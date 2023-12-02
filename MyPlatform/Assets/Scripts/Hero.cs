@@ -1,6 +1,7 @@
 
 using UnityEngine;
-namespace MyPlatform {
+namespace MyPlatform
+{
     public class Hero : MonoBehaviour
     {
         //Нужно воплотить вертикальное передвижение, без физики в одном методе
@@ -13,7 +14,7 @@ namespace MyPlatform {
         private Rigidbody2D rbody;
         private void Awake()
         {
-            rbody = GetComponent<Rigidbody2D>();    
+            rbody = GetComponent<Rigidbody2D>();
         }
         public void SetDirection(Vector2 direction)
         {
@@ -22,12 +23,12 @@ namespace MyPlatform {
 
         private void FixedUpdate()
         {
-            rbody.velocity = new Vector2(_direction.x * _speed, rbody.velocity.y) ;
+            rbody.velocity = new Vector2(_direction.x * _speed, rbody.velocity.y);
 
             var isJumping = _direction.y > 0;
             if (isJumping)
             {
-                if (IsGrounded())
+                if (IsGrounded() && rbody.velocity.y <= 0)
                 {
                     rbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
                 }
@@ -36,12 +37,12 @@ namespace MyPlatform {
             {
                 rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y * 0.5f);
             }
-           
+
         }
 
         private bool IsGrounded()
         {
-            return _groundCheck.IsTouchingLayer ;
+            return _groundCheck.IsTouchingLayer;
         }
         public void OnDrawGizmos()
         {
