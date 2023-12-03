@@ -1,5 +1,7 @@
 
+using MyPlatform.Components;
 using UnityEngine;
+using UnityEngine.Events;
 namespace MyPlatform
 {
     public class Hero : MonoBehaviour
@@ -10,6 +12,12 @@ namespace MyPlatform
 
         [SerializeField] private LayerCheck _groundCheck;
 
+        [SerializeField] private float _damageJumpSpeed;
+
+        [SerializeField] private float _ineractionRadius;
+        
+        [SerializeField] private LayerMask _interactionLayer;
+
         Vector2 _direction;
         private Rigidbody2D rbody;
         private Animator _animator;
@@ -17,8 +25,13 @@ namespace MyPlatform
         private static readonly int isGroundKey = Animator.StringToHash("is-ground");
         private static readonly int isRunning = Animator.StringToHash("is-running");
         private static readonly int VerticalVelocity = Animator.StringToHash("vertical-velocity");
+        private static readonly int Hit = Animator.StringToHash("hit");
+
+
 
         private SpriteRenderer _sprite;
+
+        private Collider2D[] _ineractionResult = new Collider2D[1];
 
         private void Awake()
         {
@@ -80,6 +93,33 @@ namespace MyPlatform
         public void Saying()
         {
             Debug.Log(message: "Aaaargh");
+        }
+        
+        //Проиграем здесь соотв. анимацию
+        public void TakeDamage()
+        {
+            _animator.SetTrigger(Hit);
+            //Для того, чтобы герой подлетел наверх
+            rbody.velocity = new Vector2(rbody.velocity.x, _damageJumpSpeed);
+
+        }
+
+        public void Ineract()//метод возвращает количество результатов, который он получил, в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив
+            //и вернет размер
+        {
+            var size = Physics2D.OverlapCircleNonAlloc(
+                transform.position, 
+                _ineractionRadius, 
+                _ineractionResult, 
+                _interactionLayer);//Метод позволяющий пересекающий объект, но не будет выделять лишнюю память
+            for(int i = 0; i < size; i++)
+            {
+                var interactable = _ineractionResult[i].GetComponent<InteractableComponent>();
+                if(interactable != null )
+                {
+                    interactable.Interact();
+                }
+            }
         }
     }
 }

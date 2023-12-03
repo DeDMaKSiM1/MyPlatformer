@@ -19,13 +19,22 @@ namespace MyPlatform
         private int _currentSpriteIndex;  //Текущий индекс спрайта из массива
         private float _nextFrameTime;     //Время для следующего апдейта
 
-       
+
 
         private void Start()
         {
             _renderer = GetComponent<SpriteRenderer>(); //Забираем компонент для переменной
 
         }
+
+        //private void OnBecameVisible()
+        //{
+        //    enabled = false;
+        //}
+        //private void OnBecameInvisible()
+        //{
+        //    enabled = false;
+        //}
 
         private void OnEnable()
         {
