@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,67 +7,113 @@ using UnityEngine.Events;
 namespace MyPlatform
 {
     [RequireComponent(typeof(SpriteRenderer))]
-
     public class SpriteAnimation : MonoBehaviour
     {
-        [SerializeField] private int _frameRate; //Указали какой будет частота кадров 
-        [SerializeField] private bool _loop;     //Будет ли циклиться
-        [SerializeField] private Sprite[] sprites;//Массив спрайтов, которые будут меняться для анимации
-        [SerializeField] UnityEvent _onComplete;  //Ивент, когда у нас все закончится
-        //Далее сервисные переменные
-        private SpriteRenderer _renderer; //Наш рендерер у которого мы будем менять спрайты
-        private float _secondsPerFrame;   //Сколько секунд уходит на показ одного спрайта
-        private int _currentSpriteIndex;  //Текущий индекс спрайта из массива
-        private float _nextFrameTime;     //Время для следующего апдейта
 
+
+        [SerializeField][Range(1, 30)] private int _frameRate = 10;
+        [SerializeField] private UnityEvent<string> _onComplete;
+        [SerializeField] private AnimationClip[] _clips;
+
+        private SpriteRenderer _renderer;
+
+        private float _secPerFrame;
+        private float _nextFrameTime;
+        private int _currentFrame;
+        private bool _isPlaying = true;
+
+        private int _currentClip;
 
 
         private void Start()
         {
-            _renderer = GetComponent<SpriteRenderer>(); //Забираем компонент для переменной
+            _renderer = GetComponent<SpriteRenderer>();
+            _secPerFrame = 1f / _frameRate;
+
+            StartAnimation();
 
         }
-
-        //private void OnBecameVisible()
-        //{
-        //    enabled = false;
-        //}
-        //private void OnBecameInvisible()
-        //{
-        //    enabled = false;
-        //}
-
+        private void OnBecameVisible()
+        {
+            enabled = _isPlaying;
+        }
+        private void OnBecameInvisible()
+        {
+            enabled = false;
+        }
+        public void SetClip(string clipName)
+        {
+            for(var i = 0; i<_clips.Length; i++)
+            {
+                if (_clips[i].Name == clipName)
+                {
+                    _currentClip = i;
+                    StartAnimation();
+                    return;
+                }
+            }
+            enabled = _isPlaying = false;
+        }
+        private void StartAnimation()
+        {
+            _nextFrameTime = Time.time + _secPerFrame;
+            _isPlaying = true;
+            _currentFrame = 0;
+        }
         private void OnEnable()
         {
-            _secondsPerFrame = 1f / _frameRate;         //Расчитываем, сколько будет длиться один кадр по времени
-            _nextFrameTime = Time.time + _secondsPerFrame;//Задаем следующий апдейт нашего кадра
-            _currentSpriteIndex = 0;
+            _nextFrameTime = Time.time + _secPerFrame;
         }
         private void Update()
         {
 
-            if (_nextFrameTime > Time.time) return;//Проверяем, проигрывается ли и наступило ли время смены кадра - если нет, просто выходим из функции
+            if (_nextFrameTime > Time.time) return;
 
-
-            if (_currentSpriteIndex >= sprites.Length)//Если наступило - проверяем не вышли ли мы за пределы массива
+            var clip = _clips[_currentClip];
+            if (_currentFrame >= clip.Sprites.Length)
             {
-                if (_loop) //Если зацикленная анимация - то просто индекс спрайта сбрасываем на 0
+                if (clip.Loop)
                 {
-                    _currentSpriteIndex = 0;
+                    _currentFrame = 0;
                 }
-                else       //Если нет - заканчиваем проигрывание анимации и вызываем CallBack что она закончилась
+                else
                 {
-                    enabled = false;
-                    _onComplete?.Invoke();
-                    return;
+                    clip.OnComplete?.Invoke();
+                    _onComplete?.Invoke(clip.Name);
+                    enabled = _isPlaying = clip.AllowNextClip;
+                    if (clip.AllowNextClip)
+                    {
+                        _currentFrame = 0;
+                        _currentClip = (int)Mathf.Repeat(_currentClip + 1,_clips.Length);
+                    }
                 }
-            }//Но если не вышли за пределы массива, то меняем спрайт, обновляем время до след изменения и говорим что в след раз установим спрайт на 1 больше.
-            _renderer.sprite = sprites[_currentSpriteIndex];
-            _nextFrameTime += _secondsPerFrame;
-            _currentSpriteIndex++;
+                return;
+            }
+            _renderer.sprite = clip.Sprites[_currentFrame];
 
+            _nextFrameTime += _secPerFrame;
+            _currentFrame++;
         }
 
     }
+
+    [Serializable]
+    public class AnimationClip
+    {
+        [SerializeField] private string _name;
+        [SerializeField] private Sprite[] _sprites;
+        [SerializeField] private bool _loop;
+        [SerializeField] private bool _allowNextClip;
+        [SerializeField] private UnityEvent _onComplete;
+
+        public string Name => _name;
+        public Sprite[] Sprites => _sprites;
+        public bool Loop => _loop;
+        public bool AllowNextClip => _allowNextClip;
+        public UnityEvent OnComplete => _onComplete;
+
+    }
+
+
 }
 
