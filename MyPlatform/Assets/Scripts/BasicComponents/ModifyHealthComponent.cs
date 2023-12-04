@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace MyPlatform.Components
 {
-    public class DamageComponent : MonoBehaviour
+    public class ModifyHealthComponent : MonoBehaviour
     {
-        [SerializeField] private int _damage;
+        [SerializeField] private int _hpDelta;
 
         //метод, который дамаг этот и нанесет
-        public void ApplyDamage(GameObject target) //мы не просто так прописали в EnterCollision свой GameObject - теперь тут и воспользуемся.
+        public void Apply(GameObject target) //мы не просто так прописали в EnterCollision свой GameObject - теперь тут и воспользуемся.
         {
             var healthComponent = target.GetComponent<HealthComponent>();
             if (healthComponent != null)
             {
-                healthComponent.ApplyDamage(_damage);
+                healthComponent.ModifyHealth(_hpDelta);
             }
 
         }

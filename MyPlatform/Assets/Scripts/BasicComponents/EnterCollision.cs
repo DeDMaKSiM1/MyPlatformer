@@ -18,12 +18,13 @@ namespace MyPlatform.Components
             }
         }
 
-        [Serializable]
-        public class EnterEvent: UnityEvent<GameObject>
-        {
 
-        }
     }
 
+    [Serializable]
+    public class EnterEvent : UnityEvent<GameObject>
+    {
+
+    }
 }
 

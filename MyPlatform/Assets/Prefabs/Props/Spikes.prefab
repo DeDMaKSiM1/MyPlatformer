@@ -128,8 +128,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6589554034515733374}
-        m_TargetAssemblyTypeName: MyPlatform.Components.DamageComponent, Assembly-CSharp
-        m_MethodName: ApplyDamage
+        m_TargetAssemblyTypeName: MyPlatform.Components.ModifyHealthComponent, Assembly-CSharp
+        m_MethodName: Apply
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85b34dc230a8384fa3f239a64ef8a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 20
+  _hpDelta: -20
