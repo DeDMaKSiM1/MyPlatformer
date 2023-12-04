@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 474298440227016142}
   - component: {fileID: 474298440227016143}
-  - component: {fileID: 474298440227016140}
   m_Layer: 0
   m_Name: Palm_Left
   m_TagString: Untagged
@@ -83,25 +82,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &474298440227016140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474298440227016137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ce86f4c59fb724b915e130b9223d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frameRate: 10
-  _loop: 1
-  sprites:
-  - {fileID: -2645899244835350471, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-  - {fileID: -6487789065682943626, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-  - {fileID: 1981876992937066421, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-  - {fileID: 7744047822205964645, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-  _onComplete:
-    m_PersistentCalls:
-      m_Calls: []

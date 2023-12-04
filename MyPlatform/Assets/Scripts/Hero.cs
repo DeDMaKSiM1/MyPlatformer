@@ -15,8 +15,11 @@ namespace MyPlatform
         [SerializeField] private float _damageJumpSpeed;
 
         [SerializeField] private float _ineractionRadius;
-        
+
         [SerializeField] private LayerMask _interactionLayer;
+
+        [SerializeField] private CheckCircleOverLap _attackRange;
+        [SerializeField] private int _damage;
 
         Vector2 _direction;
         private Rigidbody2D rbody;
@@ -26,6 +29,7 @@ namespace MyPlatform
         private static readonly int isRunning = Animator.StringToHash("is-running");
         private static readonly int VerticalVelocity = Animator.StringToHash("vertical-velocity");
         private static readonly int Hit = Animator.StringToHash("hit");
+        private static readonly int AttackKey = Animator.StringToHash("attack");
 
 
 
@@ -44,12 +48,13 @@ namespace MyPlatform
             _direction = direction;
         } // Принимающий данные о Input метод
 
+
         private void FixedUpdate()
         {
             rbody.velocity = new Vector2(_direction.x * _speed, rbody.velocity.y);
-
-            var isJumping = _direction.y > 0;
             var isGrounded = IsGrounded();
+            var isJumping = _direction.y > 0;
+            
             if (isJumping)
             {
                 if (isGrounded && rbody.velocity.y <= 0)
@@ -73,11 +78,11 @@ namespace MyPlatform
         {
             if (_direction.x > 0)
             {
-                _sprite.flipX = false;
+                transform.localScale = Vector3.one;
             }
             else if (_direction.x < 0)
             {
-                _sprite.flipX = true;
+                transform.localScale = new Vector3(-1,1,1);
             }
 
         }
@@ -94,7 +99,7 @@ namespace MyPlatform
         {
             Debug.Log(message: "Aaaargh");
         }
-        
+
         //Проиграем здесь соотв. анимацию
         public void TakeDamage()
         {
@@ -104,23 +109,41 @@ namespace MyPlatform
 
         }
 
-        public void Ineract()//метод возвращает количество результатов, который он получил, в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив
-            //и вернет размер
+        public void Ineract()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер
         {
-            var size = Physics2D.OverlapCircleNonAlloc(
-                transform.position, 
-                _ineractionRadius, 
-                _ineractionResult, 
-                _interactionLayer);//Метод позволяющий пересекающий объект, но не будет выделять лишнюю память
-            for(int i = 0; i < size; i++)
+            
+            var size = Physics2D.OverlapCircleNonAlloc(transform.position, _ineractionRadius, _ineractionResult, _interactionLayer);
+            //Метод позволяющий пересекающий объект, но не будет выделять лишнюю память
+            for (int i = 0; i < size; i++)
             {
                 var interactable = _ineractionResult[i].GetComponent<InteractableComponent>();
-                if(interactable != null )
+                if (interactable != null)
                 {
                     interactable.Interact();
                 }
             }
         }
+
+        public void Attack()
+        {
+            _animator.SetTrigger(AttackKey);
+            
+        }
+
+
+        public void GetAttack()
+        {
+            var gos = _attackRange.GetObjectInRange();
+            foreach (var go in gos)
+            {
+                var hp = go.GetComponent<HealthComponent>();
+                if (hp != null && go.CompareTag("Enemy"))//Тут энеми нужно у врагов поставить тег
+                {
+                    hp.ModifyHealth(-_damage);
+                }
+            }
+        }
     }
+
 }
 

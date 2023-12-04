@@ -2158,10 +2158,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552993474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.98, y: 0.47, z: 0}
+  m_LocalPosition: {x: -1.98, y: 0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1357842063}
+  - {fileID: 1721091159}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2198,6 +2199,8 @@ MonoBehaviour:
   _interactionLayer:
     serializedVersion: 2
     m_Bits: 128
+  _attackRange: {fileID: 1721091160}
+  _damage: 5
 --- !u!114 &552993478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2271,6 +2274,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0af38059-2e71-472b-84ea-716913f89da9
     m_ActionName: Hero/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 552993476}
+        m_TargetAssemblyTypeName: MyPlatform.HeroInputReader, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 83d01169-0c4c-4de1-aa74-f3d2dadb0bbe
+    m_ActionName: Hero/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Hero
@@ -2374,7 +2393,7 @@ Animator:
   m_GameObject: {fileID: 552993474}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 029d4e92137decc41ba769be7bbe51a6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 652b96aa430fab44787e89e8db1fbcb1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2808,39 +2827,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb84def21d4f2954d973b2b49c940b92, type: 3}
---- !u!1 &930743508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3120409479610551175, guid: 63f766a5c51e9884dba9b86783f7812f, type: 3}
-  m_PrefabInstance: {fileID: 3120409480952101378}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &930743509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930743508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ce86f4c59fb724b915e130b9223d8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frameRate: 10
-  _onComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  _clips:
-  - _name: chilling
-    _sprites:
-    - {fileID: 8683632313750085214, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-    - {fileID: 262518517033693272, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-    - {fileID: 762285979657935423, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-    - {fileID: 1400697303485121525, guid: fdffd49c59b38e940b00451460ad0fe1, type: 3}
-    _loop: 1
-    _allowNextClip: 0
-    _onComplete:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &975909727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,6 +3778,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1721091158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721091159}
+  - component: {fileID: 1721091160}
+  m_Layer: 0
+  m_Name: AttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721091159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721091158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.499, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 552993475}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1721091160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721091158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d379ed8ff25244a955e4a92c2b8119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 0.2
 --- !u!1001 &1841162618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3997,7 +4027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3588853458718461692, guid: 6b1dbe684cad70146a43601567199bec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.44
+      value: -3.47
       objectReference: {fileID: 0}
     - target: {fileID: 3588853458718461692, guid: 6b1dbe684cad70146a43601567199bec, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4048,10 +4078,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Palm_Left
       objectReference: {fileID: 0}
-    - target: {fileID: 474298440227016140, guid: 3a50e1bbb308bce49a87b991aa013880, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 474298440227016142, guid: 3a50e1bbb308bce49a87b991aa013880, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -4096,8 +4122,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 474298440227016140, guid: 3a50e1bbb308bce49a87b991aa013880, type: 3}
+    - target: {fileID: 474298440227016143, guid: 3a50e1bbb308bce49a87b991aa013880, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a50e1bbb308bce49a87b991aa013880, type: 3}
 --- !u!1001 &1209831641226867065
 PrefabInstance:
@@ -4268,16 +4297,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3120409479610551173, guid: 63f766a5c51e9884dba9b86783f7812f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3120409479610551175, guid: 63f766a5c51e9884dba9b86783f7812f, type: 3}
       propertyPath: m_Name
       value: Palm_Straight
       objectReference: {fileID: 0}
-    - target: {fileID: 3120409479610551178, guid: 63f766a5c51e9884dba9b86783f7812f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3120409479610551178, guid: 63f766a5c51e9884dba9b86783f7812f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f766a5c51e9884dba9b86783f7812f, type: 3}
 --- !u!1001 &4263931625285804196
 PrefabInstance:
