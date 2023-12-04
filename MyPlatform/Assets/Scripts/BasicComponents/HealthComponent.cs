@@ -11,6 +11,8 @@ namespace MyPlatform.Components
         [SerializeField] private UnityEvent _OnHeal;
         [SerializeField] private UnityEvent _onDie;
 
+
+
         public void ModifyHealth(int helthDelta)
         {
             _health += helthDelta;

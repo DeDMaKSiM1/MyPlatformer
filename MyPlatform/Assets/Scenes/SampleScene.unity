@@ -1900,6 +1900,17 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &295937702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+  m_PrefabInstance: {fileID: 459621508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c14be8a9bbefe44ab4756cafe0d85a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &327710053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,6 +2017,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 295937702}
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddMoney
+      objectReference: {fileID: 0}
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MyPlatform.Components.ModifyMoneyComponent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 600201611, guid: 804308f801f164440a693c22d32aa78d, type: 3}
+      propertyPath: _onEarn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7791311879164301718, guid: 804308f801f164440a693c22d32aa78d, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2103,6 +2142,7 @@ GameObject:
   - component: {fileID: 552993481}
   - component: {fileID: 552993482}
   - component: {fileID: 552993483}
+  - component: {fileID: 552993484}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -2389,6 +2429,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &552993484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552993474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e9ef047b3f5d54c97a292b49f73af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _money: 0
 --- !u!1 &562726120
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6566534270391427381}
   - component: {fileID: 6566534270391427380}
-  - component: {fileID: 6566534270391427384}
   - component: {fileID: 6566534270391427387}
-  - component: {fileID: 6566534270391427386}
   - component: {fileID: 6566534270391427385}
+  - component: {fileID: 6566534270391427384}
+  - component: {fileID: 6566534270391427386}
+  - component: {fileID: 1022447492}
   m_Layer: 0
   m_Name: Coins_Gold
   m_TagString: Untagged
@@ -86,6 +87,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6566534270391427387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566534270391427391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7cd098af99dd44d9fce4efa040fe2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tag: Player
+  _action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6566534270391427384}
+        m_TargetAssemblyTypeName: MyPlatform.SpriteAnimation, Assembly-CSharp
+        m_MethodName: SetClip
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: destroy
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6566534270391427385}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1022447492}
+        m_TargetAssemblyTypeName: MyPlatform.Components.ModifyMoneyComponent, Assembly-CSharp
+        m_MethodName: AddMoney
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!58 &6566534270391427385
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566534270391427391}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01788479, y: 0.010219887}
+  serializedVersion: 2
+  m_Radius: 0.16568588
 --- !u!114 &6566534270391427384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,46 +207,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &6566534270391427387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6566534270391427391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7cd098af99dd44d9fce4efa040fe2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tag: Player
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6566534270391427384}
-        m_TargetAssemblyTypeName: MyPlatform.SpriteAnimation, Assembly-CSharp
-        m_MethodName: SetClip
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: destroy
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6566534270391427385}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6566534270391427386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,19 +220,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 6566534270391427391}
---- !u!58 &6566534270391427385
-CircleCollider2D:
+--- !u!114 &1022447492
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6566534270391427391}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.01788479, y: 0.010219887}
-  serializedVersion: 2
-  m_Radius: 0.16568588
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c14be8a9bbefe44ab4756cafe0d85a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyDelta: 10
