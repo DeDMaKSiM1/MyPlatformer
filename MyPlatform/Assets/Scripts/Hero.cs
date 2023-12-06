@@ -21,9 +21,16 @@ namespace MyPlatform
         [SerializeField] private CheckCircleOverLap _attackRange;
         [SerializeField] private int _damage;
 
+        [SerializeField] private ParticleSystem _hitParticles;
+
         Vector2 _direction;
         private Rigidbody2D rbody;
         private Animator _animator;
+
+        private int _coins;
+
+        private bool _isGrounded;
+        private bool _allowDoubleJump;
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground");
         private static readonly int isRunning = Animator.StringToHash("is-running");
@@ -48,32 +55,58 @@ namespace MyPlatform
             _direction = direction;
         } // ѕринимающий данные о Input метод
 
-
+        private void Update()
+        {
+            _isGrounded = IsGrounded();
+        }
         private void FixedUpdate()
         {
-            rbody.velocity = new Vector2(_direction.x * _speed, rbody.velocity.y);
-            var isGrounded = IsGrounded();
-            var isJumping = _direction.y > 0;
+            var xVelocity = _direction.x * _speed;
+            var yVelocity = CalculateYVelocity();
+            rbody.velocity = new Vector2(xVelocity, yVelocity);
+          
             
-            if (isJumping)
-            {
-                if (isGrounded && rbody.velocity.y <= 0)
-                {
-                    rbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
-                }
-            }
-            else if (rbody.velocity.y > 0)
-            {
-                rbody.velocity = new Vector2(rbody.velocity.x, rbody.velocity.y * 0.5f);
-            }
-
-            _animator.SetBool(isGroundKey, isGrounded);
+            _animator.SetBool(isGroundKey, _isGrounded);
             _animator.SetBool(isRunning, _direction.x != 0);
             _animator.SetFloat(VerticalVelocity, rbody.velocity.y);
 
             UpdateSpriteDirection();
 
         }
+
+        private float CalculateYVelocity()
+        {
+            if (_isGrounded) _allowDoubleJump = true;
+            var yVelocity = rbody.velocity.y;
+            var isJumpPressing = _direction.y > 0;
+
+            if (isJumpPressing)
+            {
+                yVelocity = CalculateJumpVelocity(yVelocity);
+            }
+            else if (rbody.velocity.y > 0)
+            {
+                yVelocity *= 0.5f;
+            }
+            return yVelocity;
+        }
+
+        private float CalculateJumpVelocity(float yVelocity)
+        {
+            var isFalling = rbody.velocity.y <= 0.001f;
+            if (!isFalling) return yVelocity;
+            if (_isGrounded)
+            {
+                yVelocity += _jumpSpeed;
+            }else if (_allowDoubleJump)
+            {
+                yVelocity = _jumpSpeed;
+                _allowDoubleJump = false;
+               
+            }
+            return yVelocity;
+        }
+
         private void UpdateSpriteDirection()
         {
             if (_direction.x > 0)
@@ -107,6 +140,27 @@ namespace MyPlatform
             //ƒл€ того, чтобы герой подлетел наверх
             rbody.velocity = new Vector2(rbody.velocity.x, _damageJumpSpeed);
 
+            if(_coins > 0) SpawnCoins();
+
+        }
+
+        private void SpawnCoins()
+        {
+            _hitParticles.gameObject.SetActive(true);
+            _hitParticles.Play();
+
+            var numCoinsToDispose = Mathf.Min(_coins, 5);
+            _coins -=numCoinsToDispose;
+            var burst = _hitParticles.emission.GetBurst(0);
+            burst.count = numCoinsToDispose;
+            _hitParticles.emission.SetBurst(0, burst);
+            Debug.Log(_coins);
+        }
+
+        public void ModifyMoney(int moneyDelta)
+        {
+            _coins += moneyDelta;
+            Debug.Log(_coins);
         }
 
         public void Ineract()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер

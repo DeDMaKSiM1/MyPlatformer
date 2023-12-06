@@ -13,7 +13,7 @@ namespace MyPlatform.Components
         public void AddMoney(GameObject target)
         {
 
-            var moneyComponent = target.GetComponent<MoneyComponent>();
+            var moneyComponent = target.GetComponent<Hero>();
             if(moneyComponent != null )
             {
                 moneyComponent.ModifyMoney(_moneyDelta);
