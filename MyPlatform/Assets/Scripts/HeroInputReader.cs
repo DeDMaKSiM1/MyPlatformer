@@ -34,9 +34,6 @@ namespace MyPlatform
                 _hero.Attack();
             }
         }
-
-
-
     }
 }
 

@@ -2,6 +2,9 @@
 using MyPlatform.Components;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.Animations;
+
 namespace MyPlatform
 {
     public class Hero : MonoBehaviour
@@ -23,6 +26,9 @@ namespace MyPlatform
 
         [SerializeField] private ParticleSystem _hitParticles;
 
+        [SerializeField] private AnimatorController _armed;
+        [SerializeField] private AnimatorController _unarmed;
+
         Vector2 _direction;
         private Rigidbody2D rbody;
         private Animator _animator;
@@ -31,6 +37,8 @@ namespace MyPlatform
 
         private bool _isGrounded;
         private bool _allowDoubleJump;
+
+        private bool _isArmed;
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground");
         private static readonly int isRunning = Animator.StringToHash("is-running");
@@ -49,6 +57,7 @@ namespace MyPlatform
             rbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _sprite = GetComponent<SpriteRenderer>();
+
         }
         public void SetDirection(Vector2 direction)
         {
@@ -180,6 +189,7 @@ namespace MyPlatform
 
         public void Attack()
         {
+            if (!_isArmed) return;
             _animator.SetTrigger(AttackKey);
             
         }
@@ -197,6 +207,16 @@ namespace MyPlatform
                 }
             }
         }
+
+        public void ArmHero()
+        {
+            _isArmed = true;
+            _animator.runtimeAnimatorController = _armed;
+            
+        }
+
+
+
     }
 
 }

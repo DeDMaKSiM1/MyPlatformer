@@ -14,7 +14,7 @@ namespace MyPlatform
         [SerializeField][Range(1, 30)] private int _frameRate = 10;
         [SerializeField] private UnityEvent<string> _onComplete;
         [SerializeField] private AnimationClip[] _clips;
-
+          
         private SpriteRenderer _renderer;
 
         private float _secPerFrame;
@@ -57,7 +57,7 @@ namespace MyPlatform
         private void StartAnimation()
         {
             _nextFrameTime = Time.time + _secPerFrame;
-            _isPlaying = true;
+            enabled = _isPlaying = true;
             _currentFrame = 0;
         }
         private void OnEnable()
@@ -78,9 +78,10 @@ namespace MyPlatform
                 }
                 else
                 {
+                    enabled = _isPlaying = clip.AllowNextClip; 
                     clip.OnComplete?.Invoke();
                     _onComplete?.Invoke(clip.Name);
-                    enabled = _isPlaying = clip.AllowNextClip;
+                   
                     if (clip.AllowNextClip)
                     {
                         _currentFrame = 0;
