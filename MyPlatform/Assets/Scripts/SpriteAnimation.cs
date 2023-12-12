@@ -57,7 +57,7 @@ namespace MyPlatform
         private void StartAnimation()
         {
             _nextFrameTime = Time.time + _secPerFrame;
-            enabled = _isPlaying = true;
+            _isPlaying = true;
             _currentFrame = 0;
         }
         private void OnEnable()

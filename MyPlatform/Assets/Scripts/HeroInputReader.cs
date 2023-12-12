@@ -24,7 +24,7 @@ namespace MyPlatform
         {
             if (context.canceled)
             {
-                _hero.Ineract();
+                _hero.Interact();
             }
         }
         public void OnAttack(InputAction.CallbackContext context)
