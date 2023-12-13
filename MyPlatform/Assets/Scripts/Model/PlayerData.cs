@@ -1,9 +1,13 @@
-using UnityEngine;
+using System;
 
 namespace MyPlatform.Model
 {
-    public class PlayerData : MonoBehaviour
+    [Serializable]
+    public class PlayerData
     {
+        public int Coins;
+        public int Hp;
+        public bool IsArmed;
 
     }
 }
