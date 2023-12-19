@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,12 +11,14 @@ namespace MyPlatform.Components
         [SerializeField] private UnityEvent _onDamage;
         [SerializeField] private UnityEvent _OnHeal;
         [SerializeField] private UnityEvent _onDie;
-
+        [SerializeField] private HealthChangeEvent _onChange;
 
 
         public void ModifyHealth(int helthDelta)
         {
             _health += helthDelta;
+            _onChange?.Invoke(_health);
+
 
             if (helthDelta < 0)
             {
@@ -34,7 +37,18 @@ namespace MyPlatform.Components
                 _onDie?.Invoke();
             }
         }
+        
 
+        public void SetHealth(int health)
+        {
+            _health = health;
+        }
+
+        [Serializable]
+        public class HealthChangeEvent : UnityEvent<int>
+        {
+
+        }
     }
 }
 

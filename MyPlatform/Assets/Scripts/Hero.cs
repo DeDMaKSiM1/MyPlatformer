@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEditor;
 using UnityEditor.Animations;
+using MyPlatform.Model;
 
 namespace MyPlatform
 {
@@ -33,12 +34,8 @@ namespace MyPlatform
         private Rigidbody2D rbody;
         private Animator _animator;
 
-        private int _coins;
-
         private bool _isGrounded;
         private bool _allowDoubleJump;
-
-        private bool _isArmed;
 
         private static readonly int isGroundKey = Animator.StringToHash("is-ground");
         private static readonly int isRunning = Animator.StringToHash("is-running");
@@ -46,18 +43,25 @@ namespace MyPlatform
         private static readonly int Hit = Animator.StringToHash("hit");
         private static readonly int AttackKey = Animator.StringToHash("attack");
 
-
-
-        private SpriteRenderer _sprite;
+        
 
         private Collider2D[] _ineractionResult = new Collider2D[1];
+
+        private GameSession _session;
 
         private void Awake()
         {
             rbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
-            _sprite = GetComponent<SpriteRenderer>();
+        }
 
+        private void Start()
+        {
+            _session = FindObjectOfType<GameSession>();
+            var health = GetComponent<HealthComponent>();
+
+            health.SetHealth(_session.Data.Hp);
+            UpdateHeroWeapon();
         }
         public void SetDirection(Vector2 direction)
         {
@@ -149,7 +153,7 @@ namespace MyPlatform
             //ƒл€ того, чтобы герой подлетел наверх
             rbody.velocity = new Vector2(rbody.velocity.x, _damageJumpSpeed);
 
-            if(_coins > 0) SpawnCoins();
+            if(_session.Data.Coins > 0) SpawnCoins();
 
         }
 
@@ -158,18 +162,18 @@ namespace MyPlatform
             _hitParticles.gameObject.SetActive(true);
             _hitParticles.Play();
 
-            var numCoinsToDispose = Mathf.Min(_coins, 5);
-            _coins -=numCoinsToDispose;
+            var numCoinsToDispose = Mathf.Min(_session.Data.Coins, 5);
+            _session.Data.Coins -=numCoinsToDispose;
             var burst = _hitParticles.emission.GetBurst(0);
             burst.count = numCoinsToDispose;
             _hitParticles.emission.SetBurst(0, burst);
-            Debug.Log(_coins);
+            Debug.Log(_session.Data.Coins);
         }
 
         public void ModifyMoney(int moneyDelta)
         {
-            _coins += moneyDelta;
-            Debug.Log(_coins);
+            _session.Data.Coins += moneyDelta;
+            Debug.Log(_session.Data.Coins);
         }
 
         public void Interact()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер
@@ -189,7 +193,7 @@ namespace MyPlatform
 
         public void Attack()
         {
-            if (!_isArmed) return;
+            if (!_session.Data.IsArmed) return;
             _animator.SetTrigger(AttackKey);
             
         }
@@ -210,11 +214,19 @@ namespace MyPlatform
 
         public void ArmHero()
         {
-            _isArmed = true;
-            _animator.runtimeAnimatorController = _armed;
-            
+            _session.Data.IsArmed = true;
+            UpdateHeroWeapon();
         }
 
+        private void UpdateHeroWeapon()
+        {
+            _animator.runtimeAnimatorController = _session.Data.IsArmed ? _armed : _unarmed;
+        }
+
+        public void OnHealthChanged(int currentHealth)
+        {
+            _session.Data.Hp = currentHealth;
+        }
 
 
     }
