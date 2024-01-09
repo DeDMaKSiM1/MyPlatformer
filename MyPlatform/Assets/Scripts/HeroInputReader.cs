@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MyPlatform.Creatures;
 namespace MyPlatform
 {
     public class HeroInputReader : MonoBehaviour
@@ -11,14 +12,11 @@ namespace MyPlatform
             var direction = context.ReadValue<Vector2>();
             _hero.SetDirection(direction);
         }
-        private void OnClicked(InputAction.CallbackContext context)
-        {
-            if (context.canceled)
-            {
-                _hero.Saying();
-            }
+        //private void OnClicked(InputAction.CallbackContext context)
+        //{
 
-        }
+
+        //}
 
         public void OnInteract(InputAction.CallbackContext context)
         {

@@ -5,20 +5,21 @@ namespace MyPlatform.Creatures
 {
     public class Creature : MonoBehaviour
     {
+        [Header("Params")]
         [SerializeField] private float _speed;
-        [SerializeField] private float _jumpSpeed;
+        [SerializeField] protected float _jumpSpeed;
         [SerializeField] private float _damageJumpSpeed;
         [SerializeField] private int _damage;
 
-        [SerializeField] private LayerCheck _groundCheck;
-
+        [Header("Checkers")]
+        [SerializeField] protected LayerCheck _groundCheck;
         [SerializeField] private CheckCircleOverLap _attackRange;
         [SerializeField] private SpawnListComponent _particles;
 
         //Сервисные переменные
-        private Rigidbody2D rbody;
-        Vector2 _direction;
-        private Animator _animator;
+        protected Rigidbody2D rbody;
+        protected Vector2 _direction;
+        protected Animator _animator;
         protected bool _isGrounded;
         private bool _isJumping;
 
@@ -97,6 +98,42 @@ namespace MyPlatform.Creatures
             return yVelocity;
         }
 
+        private void UpdateSpriteDirection()
+        {
+            if (_direction.x > 0)
+            {
+                transform.localScale = Vector3.one;
+            }
+            else if (_direction.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+
+        }
+
+        public virtual void TakeDamage()
+        {
+            _animator.SetTrigger(Hit);
+            //Для того, чтобы герой подлетел наверх
+            rbody.velocity = new Vector2(rbody.velocity.x, _damageJumpSpeed);
+        }
+        public virtual void Attack()
+        {
+            _animator.SetTrigger(AttackKey);
+
+        }
+        public void GetAttack()
+        {
+            var gos = _attackRange.GetObjectInRange();
+            foreach (var go in gos)
+            {
+                var hp = go.GetComponent<HealthComponent>();
+                if (hp != null && go.CompareTag("Enemy"))//Тут энеми нужно у врагов поставить тег
+                {
+                    hp.ModifyHealth(-_damage);
+                }
+            }
+        }
 
     }
 }

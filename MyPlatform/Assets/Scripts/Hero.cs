@@ -1,8 +1,6 @@
 
 using MyPlatform.Components;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEditor;
 using UnityEditor.Animations;
 using MyPlatform.Model;
 
@@ -10,8 +8,11 @@ namespace MyPlatform.Creatures
 {
     public class Hero : Creature
     {
-        [SerializeField] private float _ineractionRadius;
+
         [SerializeField] private LayerMask _interactionLayer;
+        [SerializeField] private LayerCheck _wallCheck;
+
+        [SerializeField] private float _ineractionRadius;
 
         [SerializeField] private ParticleSystem _hitParticles;
 
@@ -19,13 +20,18 @@ namespace MyPlatform.Creatures
         [SerializeField] private AnimatorController _unarmed;
 
         private Collider2D[] _ineractionResult = new Collider2D[1];
+
+        private float _defaultGravityScale;
+
         private bool _allowDoubleJump;
+        private bool _isOnWall;       
 
         private GameSession _session;
 
         protected override void Awake()
         {
             base.Awake();
+            _defaultGravityScale = rbody.gravityScale;
         }
 
         private void Start()
@@ -41,6 +47,19 @@ namespace MyPlatform.Creatures
         protected override void Update()
         {
             base.Update();
+
+            if (_wallCheck.IsTouchingLayer && _direction.x == transform.localScale.x)
+            {
+                _isOnWall = true;
+                rbody.gravityScale = 0;
+            }
+            else
+            {
+                _isOnWall = false;
+                rbody.gravityScale = _defaultGravityScale;
+            }
+
+
         }
 
 
@@ -60,56 +79,27 @@ namespace MyPlatform.Creatures
             return base.CalculateYVelocity() ;
         }
 
-        private float CalculateJumpVelocity(float yVelocity)
+        protected override float CalculateJumpVelocity(float yVelocity)
         {
-            var isFalling = rbody.velocity.y <= 0.001f;
-            if (!isFalling) return yVelocity;
-            if (_isGrounded)
+            if (!_isGrounded && _allowDoubleJump)
             {
-                yVelocity += _jumpSpeed;
-            }
-            else if (_allowDoubleJump)
-            {
-                yVelocity = _jumpSpeed;
                 _allowDoubleJump = false;
+                return _jumpSpeed;
 
             }
-            return yVelocity;
+            return base.CalculateJumpVelocity(yVelocity);
         }
 
-        private void UpdateSpriteDirection()
-        {
-            if (_direction.x > 0)
-            {
-                transform.localScale = Vector3.one;
-            }
-            else if (_direction.x < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
 
-        }
-        private bool IsGrounded()
-        {
-            return _groundCheck.IsTouchingLayer;
-        }
-        public void OnDrawGizmos()
-        {
-            Gizmos.color = IsGrounded() ? Color.green : Color.red;
-        }
+       
 
-        public void Saying()
-        {
-            Debug.Log(message: "Aaaargh");
-        }
+
+
 
         //Проиграем здесь соотв. анимацию
-        public void TakeDamage()
+        public override void TakeDamage()
         {
-            _animator.SetTrigger(Hit);
-            //Для того, чтобы герой подлетел наверх
-            rbody.velocity = new Vector2(rbody.velocity.x, _damageJumpSpeed);
-
+            base.TakeDamage();
             if (_session.Data.Coins > 0) SpawnCoins();
 
         }
@@ -148,26 +138,15 @@ namespace MyPlatform.Creatures
             }
         }
 
-        public void Attack()
+        public override void Attack()
         {
             if (!_session.Data.IsArmed) return;
-            _animator.SetTrigger(AttackKey);
+            base.Attack();
 
         }
 
 
-        public void GetAttack()
-        {
-            var gos = _attackRange.GetObjectInRange();
-            foreach (var go in gos)
-            {
-                var hp = go.GetComponent<HealthComponent>();
-                if (hp != null && go.CompareTag("Enemy"))//Тут энеми нужно у врагов поставить тег
-                {
-                    hp.ModifyHealth(-_damage);
-                }
-            }
-        }
+
 
         public void ArmHero()
         {
