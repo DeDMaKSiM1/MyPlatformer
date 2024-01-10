@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using MyPlatform.Creatures;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 namespace MyPlatform.Components
 {

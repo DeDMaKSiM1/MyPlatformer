@@ -8,10 +8,11 @@ namespace MyPlatform.Creatures
         [Header("Params")]
         [SerializeField] private float _speed;
         [SerializeField] protected float _jumpSpeed;
-        [SerializeField] private float _damageJumpSpeed;
+        [SerializeField] private float _damageVelocity;
         [SerializeField] private int _damage;
 
         [Header("Checkers")]
+
         [SerializeField] protected LayerCheck _groundCheck;
         [SerializeField] private CheckCircleOverLap _attackRange;
         [SerializeField] private SpawnListComponent _particles;
@@ -76,7 +77,7 @@ namespace MyPlatform.Creatures
                 _isJumping = true;
 
                 var isFalling = rbody.velocity.y <= 0.001f;
-                if (!isFalling) return yVelocity;
+                
 
                 yVelocity = isFalling ? CalculateJumpVelocity(yVelocity) : yVelocity;
             }
@@ -115,7 +116,7 @@ namespace MyPlatform.Creatures
         {
             _animator.SetTrigger(Hit);
             //Для того, чтобы герой подлетел наверх
-            rbody.velocity = new Vector2(rbody.velocity.x, _damageJumpSpeed);
+            rbody.velocity = new Vector2(rbody.velocity.x, _damageVelocity);
         }
         public virtual void Attack()
         {
