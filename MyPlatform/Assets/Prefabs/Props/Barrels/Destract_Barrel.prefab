@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7757480715191555594}
   - component: {fileID: 7757480715191555599}
   - component: {fileID: 7757480715191555596}
-  - component: {fileID: 7757480715191555595}
   - component: {fileID: 4107412691082845659}
+  - component: {fileID: 7757480715191555595}
   - component: {fileID: 216683831}
   m_Layer: 6
   m_Name: Destract_Barrel
@@ -115,17 +115,17 @@ MonoBehaviour:
         m_Calls: []
   - _name: hit
     _sprites:
-    - {fileID: 21300000, guid: 5efda3b0feaf65b46a47792295072c85, type: 3}
+    - {fileID: 21300000, guid: 2b5d5ac066b98224eacebeeb6fae5452, type: 3}
     - {fileID: 21300000, guid: d0d82609134f6e84096ab3d60fc75951, type: 3}
     - {fileID: 21300000, guid: da32e937d8fddcd4e91905b0e0bd15d3, type: 3}
-    - {fileID: 21300000, guid: 2b5d5ac066b98224eacebeeb6fae5452, type: 3}
+    - {fileID: 21300000, guid: 5efda3b0feaf65b46a47792295072c85, type: 3}
     _loop: 0
     _allowNextClip: 0
     _onComplete:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7757480715191555594}
-          m_TargetAssemblyTypeName: MyPlatform.SpriteAnimation, Assembly-CSharp
+          m_TargetAssemblyTypeName: MyPlatform.Components.SpriteAnimation, Assembly-CSharp
           m_MethodName: SetClip
           m_Mode: 5
           m_Arguments:
@@ -206,19 +206,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7757480715191555595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7757480715191555605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd3f01ad7e180c4fbb91a012a2b9c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objectToDestroy: {fileID: 7757480715191555605}
 --- !u!114 &4107412691082845659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +252,22 @@ MonoBehaviour:
           m_StringArgument: destroy
           m_BoolArgument: 0
         m_CallState: 2
+  _onChange:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7757480715191555595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7757480715191555605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd3f01ad7e180c4fbb91a012a2b9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToDestroy: {fileID: 7757480715191555605}
 --- !u!114 &216683831
 MonoBehaviour:
   m_ObjectHideFlags: 0

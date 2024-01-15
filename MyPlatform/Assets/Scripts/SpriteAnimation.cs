@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace MyPlatform
+namespace MyPlatform.Components
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteAnimation : MonoBehaviour
@@ -14,7 +14,7 @@ namespace MyPlatform
         [SerializeField][Range(1, 30)] private int _frameRate = 10;
         [SerializeField] private UnityEvent<string> _onComplete;
         [SerializeField] private AnimationClip[] _clips;
-          
+
         private SpriteRenderer _renderer;
 
         private float _secPerFrame;
@@ -43,7 +43,7 @@ namespace MyPlatform
         }
         public void SetClip(string clipName)
         {
-            for(var i = 0; i<_clips.Length; i++)
+            for (var i = 0; i < _clips.Length; i++)
             {
                 if (_clips[i].Name == clipName)
                 {
@@ -78,14 +78,14 @@ namespace MyPlatform
                 }
                 else
                 {
-                    enabled = _isPlaying = clip.AllowNextClip; 
+                    enabled = _isPlaying = clip.AllowNextClip;
                     clip.OnComplete?.Invoke();
                     _onComplete?.Invoke(clip.Name);
-                   
+
                     if (clip.AllowNextClip)
                     {
                         _currentFrame = 0;
-                        _currentClip = (int)Mathf.Repeat(_currentClip + 1,_clips.Length);
+                        _currentClip = (int)Mathf.Repeat(_currentClip + 1, _clips.Length);
                     }
                 }
                 return;

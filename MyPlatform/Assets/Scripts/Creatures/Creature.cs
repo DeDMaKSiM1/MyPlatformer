@@ -6,10 +6,12 @@ namespace MyPlatform.Creatures
     public class Creature : MonoBehaviour
     {
         [Header("Params")]
+        [SerializeField] private bool _invertScale;
         [SerializeField] private float _speed;
         [SerializeField] protected float _jumpSpeed;
         [SerializeField] private float _damageVelocity;
         [SerializeField] private int _damage;
+
 
         [Header("Checkers")]
 
@@ -18,10 +20,10 @@ namespace MyPlatform.Creatures
         [SerializeField] private SpawnListComponent _particles;
 
         //Сервисные переменные
-        protected Rigidbody2D rbody;
-        protected Vector2 _direction;
-        protected Animator _animator;
-        protected bool _isGrounded;
+        protected Rigidbody2D Rbody;
+        protected Vector2 Direction;
+        protected Animator _Animator;
+        protected bool IsGrounded;
         private bool _isJumping;
 
         //Анимационные ключи
@@ -38,36 +40,36 @@ namespace MyPlatform.Creatures
         //Также расправляемся с остальными методами, которые можно выделить в общие методы Creatures
         protected virtual void Awake()
         {
-            rbody = GetComponent<Rigidbody2D>();
-            _animator = GetComponent<Animator>();
+            Rbody = GetComponent<Rigidbody2D>();
+            _Animator = GetComponent<Animator>();
         }
         public void SetDirection(Vector2 direction)
         {
-            _direction = direction;
+            Direction = direction;
         } // Принимающий данные о Input метод
         protected virtual void Update()
         {
-            _isGrounded = _groundCheck.IsTouchingLayer;
+            IsGrounded = _groundCheck.IsTouchingLayer;
         }
         private void FixedUpdate()
         {
-            var xVelocity = _direction.x * _speed;
+            var xVelocity = Direction.x * _speed;
             var yVelocity = CalculateYVelocity();
-            rbody.velocity = new Vector2(xVelocity, yVelocity);
+            Rbody.velocity = new Vector2(xVelocity, yVelocity);
 
 
-            _animator.SetBool(isGroundKey, _isGrounded);
-            _animator.SetBool(isRunning, _direction.x != 0);
-            _animator.SetFloat(VerticalVelocity, rbody.velocity.y);
+            _Animator.SetBool(isGroundKey, IsGrounded);
+            _Animator.SetBool(isRunning, Direction.x != 0);
+            _Animator.SetFloat(VerticalVelocity, Rbody.velocity.y);
 
             UpdateSpriteDirection();
 
         }
         protected virtual float CalculateYVelocity()
         {
-            var yVelocity = rbody.velocity.y;
-            var isJumpPressing = _direction.y > 0;
-            if (_isGrounded)
+            var yVelocity = Rbody.velocity.y;
+            var isJumpPressing = Direction.y > 0;
+            if (IsGrounded)
             {
                 _isJumping = false;
             }
@@ -76,12 +78,12 @@ namespace MyPlatform.Creatures
             {
                 _isJumping = true;
 
-                var isFalling = rbody.velocity.y <= 0.001f;
-                
+                var isFalling = Rbody.velocity.y <= 0.001f;
+
 
                 yVelocity = isFalling ? CalculateJumpVelocity(yVelocity) : yVelocity;
             }
-            else if (rbody.velocity.y > 0)
+            else if (Rbody.velocity.y > 0)
             {
                 yVelocity *= 0.5f;
             }
@@ -91,7 +93,7 @@ namespace MyPlatform.Creatures
         protected virtual float CalculateJumpVelocity(float yVelocity)
         {
 
-            if (_isGrounded)
+            if (IsGrounded)
             {
                 yVelocity = _jumpSpeed;
             }
@@ -101,42 +103,233 @@ namespace MyPlatform.Creatures
 
         private void UpdateSpriteDirection()
         {
-            if (_direction.x > 0)
+            var multipiller = _invertScale ? -1 : 1;
+
+            if (Direction.x > 0)
             {
-                transform.localScale = Vector3.one;
+                transform.localScale = new Vector3(multipiller, 1, 1) ;
             }
-            else if (_direction.x < 0)
+            else if (Direction.x < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-1 * multipiller, 1, 1);
             }
 
         }
 
         public virtual void TakeDamage()
         {
-            _animator.SetTrigger(Hit);
+            _Animator.SetTrigger(Hit);
             //Для того, чтобы герой подлетел наверх
-            rbody.velocity = new Vector2(rbody.velocity.x, _damageVelocity);
+            Rbody.velocity = new Vector2(Rbody.velocity.x, _damageVelocity);
         }
         public virtual void Attack()
         {
-            _animator.SetTrigger(AttackKey);
+            _Animator.SetTrigger(AttackKey);
 
         }
         public void GetAttack()
         {
-            var gos = _attackRange.GetObjectInRange();
-            foreach (var go in gos)
-            {
-                var hp = go.GetComponent<HealthComponent>();
-                if (hp != null && go.CompareTag("Enemy"))//Тут энеми нужно у врагов поставить тег
-                {
-                    hp.ModifyHealth(-_damage);
-                }
-            }
+            _attackRange.Check();
+
         }
 
     }
 }
+/*
+ * Создать новый скрипт DoInteractionComponent в namespace .Components
+ * в классе public class DoInteractionComponent : MonoBehavior{
+ * public void DoInteraction(GameObject go)
+ *      {
+ *          var interactable = go.GetComponent<InteractableComponent>(); 
+ *          if (interactable != null)
+ *              interactable.Intetact();
+ *      }
+ * 
+ * 
+ * }
+ * 
+ * 
+ * 
+ */
+/*
+ * Создание ИИ через Coroutine
+ * Создаем класс MobAI : MonoBehavior в .Creatures
+ * {
+ *  [SerializeField] private LayerCheck _vision;
+ *  [SerializeField] private LayerCheck _canAttack;
+ *    
+ *  
+ *  [SerializeField] private float _alarmDelay = 0.5f;
+ *  [SerializeField] private float _attackCooldown = 1f;
+ *  [SerializeField] private float _missHeroCooldown = 0.5f;
+ *  private Coroutine _current;
+ *  private GameObject _target;
+ *  
+ *  private static readonly int IsDeadKey = Animator.KeyToHash("is_dead")
+ *  
+ *  private SpawnListComponent _particles;
+ *  private Creature _creature;
+ *  private Animator _animator;
+ *  private bool _isDead;
+ *  private Patrol _patrol;
+ *  
+ *  private void Awake()
+ *  {
+ *      _particles =  GetComponent<SpawnListComponent>();
+ *      _creature = GetComponent<Creature>();
+ *      _animator = GetComponent<Animator>();
+ *      _patrol = GetComponent<Patrol>();
+ *  }
+ *  private void Start()
+ *  {
+ *      StartState(_patrol.DoPatrol());
+ *      
+ *  }  
+ *  
+ *  
+ *  public void OnHeroInVision(GameObject go)
+ *  {
+ *      if(_isDead) return;
+ *      _target = go;
+ *      StartState(AgroToHero());
+ *  }
+ *  
+ *  
+ *  
+ *  private IEnumerator AgroToHero()
+ *  {
+ *      _particles.Spawn("Exclamation");
+ *      yield return new WaitForSecond(_alarmDelay);
+ *      
+ *      StartState(GoToHero);
+ *  }
+ *  
+ *  private IEnumerator GoToHero()
+ *  {
+ *      While(_vision.IsTouchingLayer)
+ *      {
+ *          if(_canAttack.IsTouchingLayer)
+ *          {
+ *              StartState(Attack());
+ *          }
+ *          else
+ *          {
+ *              SetDirectionToTarget();
+ *          }         
+ *          yield return null;
+ *     
+ *      }
+ *      
+ *      _particles.Spawn("MissHero");
+ *      yield return new WaitForSeconds(_missHeroCooldown);
+ *      
+ *  }
+ *  
+ *  private IEnumerator Attack()
+ *  {
+ *      While(_canAttack.IsTouchingLayer)
+ *          {
+ *              _creature.Attack();
+ *              yield return new WaitForSeconds(_attackCooldown);
+ *          }
+ *          
+ *          
+ *      StartState(GoToHero());
+ *  }
+ *  
+ *  private void SetDirectionToTarget()
+ *  {
+ *      var direction = _target.transform.position - transform.position;
+ *      direction.y = 0;
+ *      _creature.SetDirection(direction.normalized);
+ *  }
+ *  
+ *  
+
+ *  
+ *  
+ *  
+ *  
+ *  private void StartState(IEnumerator coroutine)
+ *  {
+ *      _creature.SetDirection(Vector2.zero);
+ *      
+ *      if(_current != null)
+ *          StopCoroutine(_current);
+ *      _current = StartCoroutine(coroutine);
+ *  }
+ *  
+ *  public void OnDie()
+ *  {
+ *      _isDead = true;
+ *      _animator.SetBool(IsDeadKey,true)
+ *      
+ *      if(_current != null)
+ *          StopCoroutine(_current);
+ *  }
+ *
+ *} 
+ *
+ *
+ *  Создадим новый класс чтобы вынести туда рутину для патрулирования в namespace .Creature (Родительский класс)
+ *  public abstract class Patrol : Monobehavior
+ *  {
+ *      public abstact IEnumerator DoPatrol();
+
+ *  
+ *  }
+ *  
+ *  
+ *
+ * Создадим класс-наследник Patrol в namespace .Creatures
+ * public class PointPatrol : Patrol
+ * {
+ *      [SerializeField] private Transform[] _points;
+ *      [SerializeField] private float _treshold = 1f;
+ *      
+ *      private Creature _creature;
+ *      private int _currentPoint;
+ *      
+ *      private void Awake()
+ *      {
+ *          _creature = GetComponent<Creature>();
+ *      }
+ *      
+ *      public override IEnumerator DoPatrol()
+ *      {
+ *          while(enabled)
+ *          {
+ *              if(IsOnPoint())
+ *              {
+ *                  _currentPoint = (int) Mathf.Repeat(_currentPoint + 1; _points.Length);
+ *              }
+ *              var direction = _points[_currentPoint].position - transform.position;
+ *              direction.y = 0;
+ *              _creature.SetDirection(direction.normalized);
+ *              yield return null;
+ *          }
+ *      
+ *      }
+ *      
+ *      private bool IsOnPoint()
+ *      {
+ *          return (_points[_currentPoint].position - tranform.position).magnitude < _treshold;
+ *      }
+ * 
+ * 
+ * }
+ * 
+ * Создадим еще одного наследника Patrol в том же namespace
+ * public class PlatformPatrol : Patrol
+ * {
+ *      public override IEnumerator DoPatrol()
+ *      {
+ *          yield return null;
+ *      }
+ * 
+ * }
+ *
+ * 
+ */
 
 

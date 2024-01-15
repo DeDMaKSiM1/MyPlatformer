@@ -8,30 +8,31 @@ namespace MyPlatform.Creatures
 {
     public class Hero : Creature
     {
+        [SerializeField] private CheckCircleOverLap _interactionCheck;
 
         [SerializeField] private LayerMask _interactionLayer;
         [SerializeField] private LayerCheck _wallCheck;
 
-        [SerializeField] private float _ineractionRadius;
+        [SerializeField] private float _interactionRadius;
 
         [SerializeField] private ParticleSystem _hitParticles;
 
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _unarmed;
 
-        private Collider2D[] _ineractionResult = new Collider2D[1];
+        
 
         private float _defaultGravityScale;
 
         private bool _allowDoubleJump;
-        private bool _isOnWall;       
+        private bool _isOnWall;
 
         private GameSession _session;
 
         protected override void Awake()
         {
             base.Awake();
-            _defaultGravityScale = rbody.gravityScale;
+            _defaultGravityScale = Rbody.gravityScale;
         }
 
         private void Start()
@@ -48,15 +49,15 @@ namespace MyPlatform.Creatures
         {
             base.Update();
 
-            if (_wallCheck.IsTouchingLayer && _direction.x == transform.localScale.x)
+            if (_wallCheck.IsTouchingLayer && Direction.x == transform.localScale.x)
             {
                 _isOnWall = true;
-                rbody.gravityScale = 0;
+                Rbody.gravityScale = 0;
             }
             else
             {
                 _isOnWall = false;
-                rbody.gravityScale = _defaultGravityScale;
+                Rbody.gravityScale = _defaultGravityScale;
             }
 
 
@@ -65,8 +66,8 @@ namespace MyPlatform.Creatures
 
         protected override float CalculateYVelocity()
         {
-            var isJumpPressing = _direction.y > 0;
-            if (_isGrounded || _isOnWall)
+            var isJumpPressing = Direction.y > 0;
+            if (IsGrounded || _isOnWall)
             {
                 _allowDoubleJump = true;
             }
@@ -76,12 +77,12 @@ namespace MyPlatform.Creatures
                 return 0f;
             }
             //Иначе используем базовый метод в котором мы уже обсчитываем все для прыжка.
-            return base.CalculateYVelocity() ;
+            return base.CalculateYVelocity();
         }
 
         protected override float CalculateJumpVelocity(float yVelocity)
         {
-            if (!_isGrounded && _allowDoubleJump)
+            if (!IsGrounded && _allowDoubleJump)
             {
                 _allowDoubleJump = false;
                 return _jumpSpeed;
@@ -89,12 +90,6 @@ namespace MyPlatform.Creatures
             }
             return base.CalculateJumpVelocity(yVelocity);
         }
-
-
-       
-
-
-
 
         //Проиграем здесь соотв. анимацию
         public override void TakeDamage()
@@ -125,17 +120,8 @@ namespace MyPlatform.Creatures
 
         public void Interact()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер
         {
+            _interactionCheck.Check();
 
-            var size = Physics2D.OverlapCircleNonAlloc(transform.position, _ineractionRadius, _ineractionResult, _interactionLayer);
-            //Метод позволяющий пересекающий объект, но не будет выделять лишнюю память
-            for (int i = 0; i < size; i++)
-            {
-                var interactable = _ineractionResult[i].GetComponent<InteractableComponent>();
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                }
-            }
         }
 
         public override void Attack()
@@ -145,9 +131,6 @@ namespace MyPlatform.Creatures
 
         }
 
-
-
-
         public void ArmHero()
         {
             _session.Data.IsArmed = true;
@@ -156,7 +139,7 @@ namespace MyPlatform.Creatures
 
         private void UpdateHeroWeapon()
         {
-            _animator.runtimeAnimatorController = _session.Data.IsArmed ? _armed : _unarmed;
+            _Animator.runtimeAnimatorController = _session.Data.IsArmed ? _armed : _unarmed;
         }
 
         public void OnHealthChanged(int currentHealth)
