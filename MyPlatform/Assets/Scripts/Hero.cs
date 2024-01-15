@@ -8,23 +8,24 @@ namespace MyPlatform.Creatures
 {
     public class Hero : Creature
     {
+        [SerializeField] private CheckCircleOverLap _interactionCheck;
 
         [SerializeField] private LayerMask _interactionLayer;
         [SerializeField] private LayerCheck _wallCheck;
 
-        [SerializeField] private float _ineractionRadius;
+        [SerializeField] private float _interactionRadius;
 
         [SerializeField] private ParticleSystem _hitParticles;
 
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _unarmed;
 
-        private Collider2D[] _ineractionResult = new Collider2D[1];
+        
 
         private float _defaultGravityScale;
 
         private bool _allowDoubleJump;
-        private bool _isOnWall;       
+        private bool _isOnWall;
 
         private GameSession _session;
 
@@ -76,7 +77,7 @@ namespace MyPlatform.Creatures
                 return 0f;
             }
             //Иначе используем базовый метод в котором мы уже обсчитываем все для прыжка.
-            return base.CalculateYVelocity() ;
+            return base.CalculateYVelocity();
         }
 
         protected override float CalculateJumpVelocity(float yVelocity)
@@ -89,12 +90,6 @@ namespace MyPlatform.Creatures
             }
             return base.CalculateJumpVelocity(yVelocity);
         }
-
-
-       
-
-
-
 
         //Проиграем здесь соотв. анимацию
         public override void TakeDamage()
@@ -125,17 +120,8 @@ namespace MyPlatform.Creatures
 
         public void Interact()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер
         {
+            _interactionCheck.Check();
 
-            var size = Physics2D.OverlapCircleNonAlloc(transform.position, _ineractionRadius, _ineractionResult, _interactionLayer);
-            //Метод позволяющий пересекающий объект, но не будет выделять лишнюю память
-            for (int i = 0; i < size; i++)
-            {
-                var interactable = _ineractionResult[i].GetComponent<InteractableComponent>();
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                }
-            }
         }
 
         public override void Attack()
@@ -144,9 +130,6 @@ namespace MyPlatform.Creatures
             base.Attack();
 
         }
-
-
-
 
         public void ArmHero()
         {
