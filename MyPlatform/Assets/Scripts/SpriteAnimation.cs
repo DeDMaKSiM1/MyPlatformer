@@ -57,7 +57,7 @@ namespace MyPlatform.Components
         private void StartAnimation()
         {
             _nextFrameTime = Time.time + _secPerFrame;
-            _isPlaying = true;
+            enabled = _isPlaying = true; // здесь была ошибка
             _currentFrame = 0;
         }
         private void OnEnable()
