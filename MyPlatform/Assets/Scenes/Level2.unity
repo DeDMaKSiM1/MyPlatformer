@@ -1949,7 +1949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     Coins: 0
-    Hp: 100
+    Hp: 10
     IsArmed: 1
 --- !u!4 &1898333790
 Transform:
@@ -2033,6 +2033,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2226421844043984327, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
+      propertyPath: _health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2226421844043984334, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
       propertyPath: m_Name
       value: Sharky

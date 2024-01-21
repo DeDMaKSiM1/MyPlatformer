@@ -37,7 +37,7 @@ namespace MyPlatform.Creatures
         }
         private void Start()
         {
-            StartState(_patrol.DoPatrol());
+            //StartState(_patrol.DoPatrol());
 
 
         }
