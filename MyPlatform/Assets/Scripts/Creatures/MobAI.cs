@@ -18,8 +18,7 @@ namespace MyPlatform.Creatures
         private Coroutine _current;
         private GameObject _target;
 
-        private static readonly int IsDeadKey = Animator.StringToHash("is_dead");
-
+        private static readonly int IsDeadKey = Animator.StringToHash("is-dead");
 
         private SpawnListComponent _particles;
         private Creature _creature;
@@ -37,7 +36,7 @@ namespace MyPlatform.Creatures
         }
         private void Start()
         {
-            //StartState(_patrol.DoPatrol());
+            StartState(_patrol.DoPatrol());
 
 
         }
@@ -71,7 +70,7 @@ namespace MyPlatform.Creatures
                 yield return null;
 
             }
-            _particles.Spawn("MissHero");
+            _particles.Spawn("MissHero");            
             yield return new WaitForSeconds(_missHeroCooldown);
 
         }
