@@ -70,8 +70,10 @@ namespace MyPlatform.Creatures
                 yield return null;
 
             }
-            _particles.Spawn("MissHero");            
+            _particles.Spawn("MissHero");  // Надо как то остановить моба
+            _creature.SetDirection(Vector2.zero); // Заставил остановиться
             yield return new WaitForSeconds(_missHeroCooldown);
+            StartState(_patrol.DoPatrol());
 
         }
 
@@ -106,6 +108,7 @@ namespace MyPlatform.Creatures
         {
             _isDead = true;
             _animator.SetBool(IsDeadKey, true);
+            gameObject.layer = 3;
 
 
              if (_current != null)
