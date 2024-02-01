@@ -149,6 +149,52 @@ namespace MyPlatform.Creatures
 
 
     }
+    /*
+    
+ namespace MyPlatform.Components{
+  public class ShowTargetComponent{
+    [Serialize Field] private Transform _target;    
+    [Serialize Field] private  CameraStateController _controller;
+    [Serialize Field] private float _delay = 0,5f;
+    private void OnValidate(){
 
+        if(_controller == null)
+            _controller = FindObjectOfType<CameraStateController>();
+    }
+
+    public void ShowTarget(){
+        _controller.SetPosition(_target.position);
+        _controller.SetState(true);
+        Invoke(nameof(MoveBack"), _delay);
+    }
+
+    public void MoveBack(){
+        _controller.SetState(false);
+    }
+
+
+ }
+ namespace MyPlatform.Components{
+  public class CameraStateControllet{ 
+
+    [Serialize Field] private Animator _animator;
+    [Serialize Field] private CinemachineVirtualCamera _camera;
+
+    public static readonly int ShowTargetKey = Animator.StringToHash("ShowTarget");
+
+    public void SetPosition(Vector3 position){
+        
+        targetPosition.z = _camera.transform.position.z;
+        _camera.transform.position = targetPosition;
+
+    }
+
+    public void SetState(bool state){
+
+    _animator.SetBool(ShowTargetKey,state);
+    }
+
+
+    */
 }
 
