@@ -3,6 +3,7 @@ using MyPlatform.Components;
 using UnityEngine;
 using UnityEditor.Animations;
 using MyPlatform.Model;
+using MyPlatform.Utils;
 
 namespace MyPlatform.Creatures
 {
@@ -10,17 +11,20 @@ namespace MyPlatform.Creatures
     {
         [SerializeField] private CheckCircleOverLap _interactionCheck;
 
+
+        [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _interactionLayer;
         [SerializeField] private LayerCheck _wallCheck;
 
         [SerializeField] private float _interactionRadius;
+        [SerializeField] private float _slamDownVelocity;
 
         [SerializeField] private ParticleSystem _hitParticles;
 
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _unarmed;
 
-        
+
 
         private float _defaultGravityScale;
 
@@ -84,10 +88,12 @@ namespace MyPlatform.Creatures
         {
             if (!IsGrounded && _allowDoubleJump)
             {
-                _allowDoubleJump = false;
+                _particles.Spawn("Jump");
+                _allowDoubleJump = false;                
                 return _jumpSpeed;
 
             }
+            
             return base.CalculateJumpVelocity(yVelocity);
         }
 
@@ -124,9 +130,22 @@ namespace MyPlatform.Creatures
 
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.IsInLayer(_groundLayer)){
+                var contact = other.contacts[0];
+                if (contact.relativeVelocity.y >= _slamDownVelocity)
+                {
+                    _particles.Spawn("SlamDown");
+                }
+            }
+
+        }
+
         public override void Attack()
         {
             if (!_session.Data.IsArmed) return;
+            _particles.Spawn("Attack");
             base.Attack();
 
         }

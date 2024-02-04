@@ -17,7 +17,7 @@ namespace MyPlatform.Creatures
 
         [SerializeField] protected LayerCheck _groundCheck;
         [SerializeField] private CheckCircleOverLap _attackRange;
-        [SerializeField] private SpawnListComponent _particles;
+        [SerializeField] protected SpawnListComponent _particles;
 
         //Сервисные переменные
         protected Rigidbody2D Rbody;
@@ -96,6 +96,8 @@ namespace MyPlatform.Creatures
             if (IsGrounded)
             {
                 yVelocity = _jumpSpeed;
+                _particles.Spawn("Jump");
+
             }
 
             return yVelocity;

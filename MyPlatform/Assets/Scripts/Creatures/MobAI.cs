@@ -73,7 +73,9 @@ namespace MyPlatform.Creatures
             _particles.Spawn("MissHero");  // Надо как то остановить моба
             _creature.SetDirection(Vector2.zero); // Заставил остановиться
             yield return new WaitForSeconds(_missHeroCooldown);
-            StartState(_patrol.DoPatrol());
+            if(!_isDead)
+                StartState(_patrol.DoPatrol());
+
 
         }
 
