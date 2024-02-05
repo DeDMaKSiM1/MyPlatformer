@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8656523579627123125}
-  _state: 1
+  _state: 0
   _animationKey: is-opened
 --- !u!61 &7295672228611880927
 BoxCollider2D:

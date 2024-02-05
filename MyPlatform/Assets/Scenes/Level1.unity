@@ -2264,17 +2264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d564928f888184788aa547649b7cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1945026155 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2114719857996731291, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-  m_PrefabInstance: {fileID: 1209831641226867065}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be1b41e28b37664782a42a9c8c7727b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2031474498
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,46 +4237,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1931543141}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1945026155}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Switch
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: ShowTarget
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MyPlatform.Components.SwitchComponents, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: MyPlatform.Components.ShowTargetComponent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1566142386764784396, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
-      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2114719857996731291, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
       propertyPath: _target
       value: 
@@ -4340,6 +4289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helm
       objectReference: {fileID: 0}
+    - target: {fileID: 3949300324046826984, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
+      propertyPath: _timers.Array.data[1].OnTimesUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1931543141}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2217fc17449bcb84aa7c221fbcc793da, type: 3}
 --- !u!1001 &1380552365026752824
@@ -4759,10 +4712,6 @@ PrefabInstance:
     - target: {fileID: 1348807791016541611, guid: 6fe1d982fe0e26244951fddaa61db83f, type: 3}
       propertyPath: m_Name
       value: Door_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363363785048480926, guid: 6fe1d982fe0e26244951fddaa61db83f, type: 3}
-      propertyPath: _state
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8286305327972215658, guid: 6fe1d982fe0e26244951fddaa61db83f, type: 3}
       propertyPath: m_RootOrder
