@@ -147,7 +147,91 @@ namespace MyPlatform.Creatures
             _session.Data.Hp = currentHealth;
         }
 
+        /*
 
+        using System.Linq
+        namespace MyPlatform.Component
+        public class ProbabilityDropComponent : Monobehavior{
+
+        [SerializeField] private int _count;
+        [SerializeField] private DropData[] _drop;
+        [SerializeField] private DropEvent _onDropCalculated
+
+        public void CalculateDrop(){
+            var itemsToDrop = new GameObject[_count]
+            var itemCount = 0;
+            var total = _drop.Sum(dropData => dropData.Probability);
+            var drop = _drop.OrderBy(dropData => drop.Data.Probability)
+            while(itemCount < _count){
+                
+                var random = UnityEngine.Random.value * total
+                foreach(var dropData in  sortedDrop){
+                    if(dropdata.probability >= random){
+                        itemsToDrop[itemCount] = dropData.Drop;
+                        itemCount++;
+                        break;
+                    }
+                }
+                
+            }
+        _onDropCalculated?.Invoke(itemsToDrop);
+        }
+
+
+        [Serializable]
+        public class DropData{
+            public GameObject Drop;
+            [Range(0f,100f)] public float Probability;
+        }
+
+        [Serializable]
+        public class DropEvent : UnityEvent <GameObject[]>{
+        }
+    }
+        using Unity.Engine;
+        using Random = UnityEngine.Random;
+        namespace MyPlatform
+        public class RandomSpawner : MonoBehavior{
+            [Header ("Spawn bound:")] [SerializeField]
+            private float _sectorAngle = 60;
+            
+            [SerializeField] private float _sectorRotation;
+
+            [SerializeField] private float _waitTime = 0.1f;
+            [SerializeField] private float _speed = 6;
+            [SerializeField] private float _itemPerBurst = 2;
+
+            private Coroutine _routine;
+            
+            public void StartToDrop(GameObject[] items)
+            {
+                TryStopRoutine();
+                
+                _routine = StartCoroutine(StartSpawn(items));
+            }
+
+            private IEnumarator StartSpawn(GameObject[] particles)
+            {
+                for(var i = 0; i < particles.Length; i++)
+                {
+                    for(var i = 0; i < _itemPerBurst && i < particles.Length; i++)
+                    {
+                        Spawn(particles[i]);
+                        i++;
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+
+    }
+        */
     }
     /*
     
