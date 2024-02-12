@@ -188,6 +188,10 @@ namespace MyPlatform.Creatures
         public class DropEvent : UnityEvent <GameObject[]>{
         }
     }
+
+
+
+
         using Unity.Engine;
         using Random = UnityEngine.Random;
         namespace MyPlatform
@@ -219,7 +223,59 @@ namespace MyPlatform.Creatures
                         Spawn(particles[i]);
                         i++;
                     }
+
+                    yield return new WaintForSeconds(_waitTime);
                 }
+            }
+                        
+            private void Spawn(GameObject particle){
+            var instance = Instantiate(particle,transform.position,Queternion.identity);
+            var rigidBody = Instance.GetComponent<Rigidbody2D>();
+            
+            var randomAngle = Random.Range(0,_sectorAngle);
+            var forceVector = AngleToVectorInSector(randomAngle);
+            rigidBody.Addforce(forceVector*_speed, ForceMode2D.Impulse);
+            }
+
+            private void OnDrawGizmosSelected(){
+            var position = transform.position;
+               
+            var middleAngleDelta = (100 - _sectorRotation - _sectorAngle)/2;
+            var rightBound = GetUnitOnCircle(middleAngleDelta);
+            Handles.DrawLine(position,position+rightBound);
+            
+            var leftBound = GetUnitOnCircle(middleAngleDelta + _sectorAngle);
+            Handles.DrawLine(position,position+leftBound);
+            Handles.DrawWireArc(position, Vector3.forward,rightBound,_sectorAngle,?)
+
+            Handles.color = new Color(1f,1f,1f,0,1f);
+            Handles.DrawSolidArc(position,Vector3.forward,rightBound,_sectorAngle,?);
+        }
+            
+            
+            private Vector2 AngleToVectorInSector(float angle){
+            var angleMiddleDelta = (100 - _sectorRotation - _sectorAngle)/2;
+            return GetUnitOnCircle(angle + angleMiddleDelta);
+
+            }
+
+            private Vector3 GetUnitOnCircle(float angleDegrees){
+            var angleRadians = angleDegrees * Mathf.PI / 100.0f;
+
+            var x = Mathf.cos(angleRadians);
+            var y = Mathf.sin(angleRadians);
+
+            return new Vector3(x,y,0);
+
+            }
+            
+
+            private void OnDisable(){
+            TryStopRoutine();
+            }
+            
+            private void OnDestroy(){
+            TryStopRoutine();
             }
 
 
@@ -227,58 +283,9 @@ namespace MyPlatform.Creatures
 
 
 
-
-
-
-    }
+}
         */
     }
-    /*
-    
- namespace MyPlatform.Components{
-  public class ShowTargetComponent{
-    [Serialize Field] private Transform _target;    
-    [Serialize Field] private  CameraStateController _controller;
-    [Serialize Field] private float _delay = 0,5f;
-    private void OnValidate(){
 
-        if(_controller == null)
-            _controller = FindObjectOfType<CameraStateController>();
-    }
-
-    public void ShowTarget(){
-        _controller.SetPosition(_target.position);
-        _controller.SetState(true);
-        Invoke(nameof(MoveBack"), _delay);
-    }
-
-    public void MoveBack(){
-        _controller.SetState(false);
-    }
-
-
- }
- namespace MyPlatform.Components{
-  public class CameraStateControllet{ 
-
-    [Serialize Field] private Animator _animator;
-    [Serialize Field] private CinemachineVirtualCamera _camera;
-
-    public static readonly int ShowTargetKey = Animator.StringToHash("ShowTarget");
-
-    public void SetPosition(Vector3 position){
-        
-        targetPosition.z = _camera.transform.position.z;
-        _camera.transform.position = targetPosition;
-
-    }
-
-    public void SetState(bool state){
-
-    _animator.SetBool(ShowTargetKey,state);
-    }
-
-
-    */
 }
 
