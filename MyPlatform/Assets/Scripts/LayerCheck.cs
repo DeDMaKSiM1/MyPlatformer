@@ -1,6 +1,8 @@
 using UnityEngine;
-namespace MyPlatform
+namespace MyPlatform.Components
 {
+
+
     public class LayerCheck : MonoBehaviour
     {
         [SerializeField] private LayerMask _layer;

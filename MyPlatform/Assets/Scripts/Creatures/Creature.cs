@@ -32,6 +32,7 @@ namespace MyPlatform.Creatures
         private static readonly int VerticalVelocity = Animator.StringToHash("vertical-velocity");
         private static readonly int Hit = Animator.StringToHash("hit");
         private static readonly int AttackKey = Animator.StringToHash("attack");
+        
 
         //„тобы перекинуть сюда методы из Hero нужно вызвать часть метода в Creature и дополнительно вызвать в классе Hero
         //ƒл€ этого воспользуемс€ переопределением методов, а в классе Hero мы можем воспользоватьс€ protected override void Awake

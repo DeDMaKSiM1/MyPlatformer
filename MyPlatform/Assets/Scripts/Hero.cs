@@ -24,7 +24,7 @@ namespace MyPlatform.Creatures
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _unarmed;
 
-
+        private static readonly int ThrowKey = Animator.StringToHash("throw");
 
         private float _defaultGravityScale;
 
@@ -165,7 +165,14 @@ namespace MyPlatform.Creatures
         {
             _session.Data.Hp = currentHealth;
         }
-
+        public void OnDoThrow()
+        {
+            _particles.Spawn("Throw");
+        }
+        public void Throw()
+        {
+            _Animator.SetTrigger(ThrowKey);
+        }
 
     }
 

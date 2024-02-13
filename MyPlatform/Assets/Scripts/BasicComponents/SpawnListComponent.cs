@@ -10,7 +10,13 @@ namespace MyPlatform.Components
         [SerializeField] private SpawnData[] _spawners;
 
 
-
+        public void SpawnAll()
+        {
+            foreach(var spawnData in _spawners)
+            {
+                spawnData.Component.Spawn();
+            } 
+        }
         //Создадим метод Spawn, который будет получать то, что мы хотим заспавнить
         public void Spawn(string id)
         {

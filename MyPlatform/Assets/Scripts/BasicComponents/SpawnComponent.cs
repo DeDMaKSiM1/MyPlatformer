@@ -10,6 +10,7 @@ namespace MyPlatform.Components
         {
             var instantiate = Instantiate(_prefab, _target.position, Quaternion.identity);
             instantiate.transform.localScale = _target.lossyScale;
+            instantiate.SetActive(true);
         }
     }
 }

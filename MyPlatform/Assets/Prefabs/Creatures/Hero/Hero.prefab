@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   _isTouchingLayer: 0
 --- !u!1 &1935484589
 GameObject:
@@ -5280,6 +5280,7 @@ Transform:
   - {fileID: 830041605}
   - {fileID: 270052195}
   - {fileID: 49009102}
+  - {fileID: 4413048445451043140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5418,6 +5419,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 83d01169-0c4c-4de1-aa74-f3d2dadb0bbe
     m_ActionName: Hero/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2226421844043984328}
+        m_TargetAssemblyTypeName: MyPlatform.HeroInputReader, Assembly-CSharp
+        m_MethodName: OnThrow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4840d374-fe1a-4d28-8bc6-652bebd8e0ce
+    m_ActionName: Hero/Throw[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Hero
@@ -5500,7 +5517,7 @@ SpriteRenderer:
   m_SortingLayerID: 1644718355
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a1ef61b3f40594a4889a3ebb7bd61062, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d491ca258c874384280e39565c3ac9e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5521,7 +5538,7 @@ Animator:
   m_GameObject: {fileID: 2226421844043984334}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 029d4e92137decc41ba769be7bbe51a6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 652b96aa430fab44787e89e8db1fbcb1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5612,6 +5629,8 @@ MonoBehaviour:
     Component: {fileID: 49009101}
   - id: SlamDown
     Component: {fileID: 576078582}
+  - id: Throw
+    Component: {fileID: 8725606199147837586}
 --- !u!1 &3078407087682791791
 GameObject:
   m_ObjectHideFlags: 0
@@ -5702,3 +5721,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 6009378986416497793}
   _prefab: {fileID: 1183014266978576842, guid: 5543a54b140be4449a5e62bc737f8aa5, type: 3}
+--- !u!1 &8440167254002601055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4413048445451043140}
+  - component: {fileID: 8725606199147837586}
+  m_Layer: 8
+  m_Name: ThrowSwordSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4413048445451043140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440167254002601055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.388, y: -0.066, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2226421844043984335}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8725606199147837586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440167254002601055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f91e20d26056c4387588a146152060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 4413048445451043140}
+  _prefab: {fileID: 1183014266978576842, guid: 988333f2206836843aa8b3d18164ea93, type: 3}
