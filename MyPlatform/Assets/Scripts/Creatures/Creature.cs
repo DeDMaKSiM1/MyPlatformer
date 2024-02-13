@@ -63,7 +63,7 @@ namespace MyPlatform.Creatures
             _Animator.SetBool(isRunning, Direction.x != 0);
             _Animator.SetFloat(VerticalVelocity, Rbody.velocity.y);
 
-            UpdateSpriteDirection();
+            UpdateSpriteDirection(Direction);
 
         }
         protected virtual float CalculateYVelocity()
@@ -104,15 +104,15 @@ namespace MyPlatform.Creatures
             return yVelocity;
         }
 
-        private void UpdateSpriteDirection()
+        public void UpdateSpriteDirection(Vector2 direction)
         {
             var multipiller = _invertScale ? -1 : 1;
 
-            if (Direction.x > 0)
+            if (direction.x > 0)
             {
                 transform.localScale = new Vector3(multipiller, 1, 1) ;
             }
-            else if (Direction.x < 0)
+            else if (direction.x < 0)
             {
                 transform.localScale = new Vector3(-1 * multipiller, 1, 1);
             }

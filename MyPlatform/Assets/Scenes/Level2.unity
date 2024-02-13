@@ -410,7 +410,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -510,7 +510,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -583,20 +583,20 @@ Tilemap:
     m_Data: {fileID: 2877769130287726269, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -8615667204210329056, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 2577598707902432233, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 8731994124877063617, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: -1814207057871383263, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 4580618572166466534, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 2577598707902432233, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 8731994124877063617, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 4275570274042874542, guid: 136c22dc1603cb9448fdf26d302978df, type: 3}
   m_TileMatrixArray:
@@ -2257,11 +2257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7757480715191555598, guid: 1ca10807155b08045a29ab0933bc3e01, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.84602356
+      value: 9.609
       objectReference: {fileID: 0}
     - target: {fileID: 7757480715191555598, guid: 1ca10807155b08045a29ab0933bc3e01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6762044
+      value: 0.509
       objectReference: {fileID: 0}
     - target: {fileID: 7757480715191555598, guid: 1ca10807155b08045a29ab0933bc3e01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2427,10 +2427,6 @@ PrefabInstance:
     - target: {fileID: 2226421844043984334, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
       propertyPath: m_Name
       value: Sharky
-      objectReference: {fileID: 0}
-    - target: {fileID: 2226421844043984334, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2226421844043984335, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
       propertyPath: m_RootOrder

@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace MyPlatform.Components
+namespace MyPlatform
 {
 
 

@@ -49,12 +49,19 @@ namespace MyPlatform.Creatures
         }
         private IEnumerator AgroToHero()
         {
+            LookAtHero();
             _particles.Spawn("Exclamation");
             yield return new WaitForSeconds(_alarmDelay);
 
             StartState(GoToHero());
         }
 
+        private void LookAtHero()
+        {
+            var direction = GetDirectionToTarget();
+            _creature.SetDirection(Vector2.zero);
+            _creature.UpdateSpriteDirection(direction);
+        }
         private IEnumerator GoToHero()
         {
             while (_vision.IsTouchingLayer)
@@ -92,9 +99,15 @@ namespace MyPlatform.Creatures
 
         private void SetDirectionToTarget()
         {
+            var direction = GetDirectionToTarget();
+            _creature.SetDirection(direction);
+        }
+
+        private Vector2 GetDirectionToTarget()
+        {
             var direction = _target.transform.position - transform.position;
             direction.y = 0;
-            _creature.SetDirection(direction.normalized);
+            return direction.normalized;
         }
 
         private void StartState(IEnumerator coroutine)
@@ -111,9 +124,10 @@ namespace MyPlatform.Creatures
             _isDead = true;
             _animator.SetBool(IsDeadKey, true);
             gameObject.layer = 3;
+            _creature.SetDirection(Vector2.zero);
 
 
-             if (_current != null)
+            if (_current != null)
                 StopCoroutine(_current);
         }
 
