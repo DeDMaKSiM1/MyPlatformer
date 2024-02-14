@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _count: 10
   _drop:
-  - Drop: {fileID: 4113912386294033709, guid: 383e7db4f6cf149439cb79bc3871f27b, type: 3}
+  - Drop: {fileID: 3222202002166740487, guid: 5ff3b960f7eb8ae45bae8a69ca337a25, type: 3}
     Probability: 20
   - Drop: {fileID: 5656305368297348737, guid: b51f343b65a5d4b4aa46befb8ce10e3a, type: 3}
     Probability: 80
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sectorAngle: 42.1
   _sectorRotation: 0
-  _waitTime: 0.4
+  _waitTime: 0.1
   _speed: 6
 --- !u!1 &2220842239857403620
 GameObject:
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafab3b21269dbe4a87b6839dab1d94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _health: 1
   _onDamage:
     m_PersistentCalls:
       m_Calls:

@@ -11,6 +11,11 @@ namespace MyPlatform.Components
             Destroy(_objectToDestroy);
         }
 
+        public void HeroLayerIgnoring()
+        {
+            gameObject.layer = 3;
+        }
+
     }
 
 }

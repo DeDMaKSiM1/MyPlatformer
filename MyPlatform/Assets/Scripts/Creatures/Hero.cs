@@ -21,6 +21,7 @@ namespace MyPlatform.Creatures
 
         [SerializeField] private ParticleSystem _hitParticles;
 
+        [SerializeField] private Cooldown _throwCooldown;
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _unarmed;
 
@@ -171,7 +172,11 @@ namespace MyPlatform.Creatures
         }
         public void Throw()
         {
-            _Animator.SetTrigger(ThrowKey);
+            if (_throwCooldown.IsReady)
+            {
+                _Animator.SetTrigger(ThrowKey);
+                _throwCooldown.Reset();
+            }
         }
 
     }

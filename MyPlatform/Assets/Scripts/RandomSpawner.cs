@@ -22,7 +22,7 @@ namespace MyPlatform
 
         public void StartToDrop(GameObject[] items)
         {
-            //TryStopRoutine();
+            TryStopRoutine();
 
             _routine = StartCoroutine(StartSpawn(items));
         }
@@ -84,13 +84,19 @@ namespace MyPlatform
 
         private void OnDisable()
         {
-            //TryStopRoutine();
+            TryStopRoutine();
         }
 
         private void OnDestroy()
         {
-            //TryStopRoutine();
+            TryStopRoutine();
         }
+
+        private void TryStopRoutine()
+        {
+            if(_routine != null) StopCoroutine(_routine);
+        }
+
     }
 }
 

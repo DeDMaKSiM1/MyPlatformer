@@ -5253,6 +5253,7 @@ GameObject:
   - component: {fileID: 2226421844043984326}
   - component: {fileID: 2226421844043984327}
   - component: {fileID: 533582672}
+  - component: {fileID: 590320444}
   m_Layer: 8
   m_Name: Hero
   m_TagString: Player
@@ -5328,6 +5329,7 @@ MonoBehaviour:
   _interactionRadius: 1
   _slamDownVelocity: 15
   _hitParticles: {fileID: 2226421843853842573}
+  _throwCooldown: {fileID: 590320444}
   _armed: {fileID: 9100000, guid: 652b96aa430fab44787e89e8db1fbcb1, type: 2}
   _unarmed: {fileID: 9100000, guid: 029d4e92137decc41ba769be7bbe51a6, type: 2}
 --- !u!114 &2226421844043984330
@@ -5631,6 +5633,19 @@ MonoBehaviour:
     Component: {fileID: 576078582}
   - id: Throw
     Component: {fileID: 8725606199147837586}
+--- !u!114 &590320444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226421844043984334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d493a0cb8bd0ed34187a3cb786312f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 1
 --- !u!1 &3078407087682791791
 GameObject:
   m_ObjectHideFlags: 0
