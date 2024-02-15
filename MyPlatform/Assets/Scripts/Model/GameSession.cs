@@ -6,15 +6,17 @@ namespace MyPlatform.Model
     {
         [SerializeField] private PlayerData _data;
         public PlayerData Data => _data;
+        private PlayerData _save;
 
         private void Awake()
         {
             if (IsSessionExist())
             {
-                DestroyImmediate(gameObject);
+                Destroy(gameObject);
             }
             else
             {
+                Save();
                 DontDestroyOnLoad(this);
             }
         }
@@ -30,6 +32,14 @@ namespace MyPlatform.Model
             return false;
         }
 
+        public void Save()
+        {
+            _save = _data.Clone();
+        }
+        public void LoadLastSave()
+        {
+            _data = _save.Clone();
+        }
 
     }
 
