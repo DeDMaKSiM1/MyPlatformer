@@ -15,7 +15,7 @@ namespace MyPlatform.Creatures
         [SerializeField] private float _alarmDelay = 0.5f;
         [SerializeField] private float _attackCooldown = 1f;
         [SerializeField] private float _missHeroCooldown = 0.5f;
-        private Coroutine _current;
+        private IEnumerator _current;
         private GameObject _target;
 
         private static readonly int IsDeadKey = Animator.StringToHash("is-dead");
@@ -116,7 +116,8 @@ namespace MyPlatform.Creatures
 
             if (_current != null)
                 StopCoroutine(_current);
-            _current = StartCoroutine(coroutine);
+            _current = coroutine;
+                StartCoroutine(coroutine);
         }
 
         public void OnDie()

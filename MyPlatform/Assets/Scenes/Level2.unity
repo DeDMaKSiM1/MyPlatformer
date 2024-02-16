@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DestractableDropBarrel
       objectReference: {fileID: 0}
+    - target: {fileID: 2220842239857403620, guid: 28d81fe929ae53c4dbe88b28ce24242f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2220842239857403647, guid: 28d81fe929ae53c4dbe88b28ce24242f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2504,6 +2508,10 @@ PrefabInstance:
     - target: {fileID: 2226421844043984334, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
       propertyPath: m_Name
       value: Sharky
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226421844043984334, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2226421844043984335, guid: 41948472a9e753d4cbb6f725e379ef8a, type: 3}
       propertyPath: m_RootOrder
