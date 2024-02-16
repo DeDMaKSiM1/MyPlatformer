@@ -1,5 +1,6 @@
-using MyPlatform.Components;
+using MyPlatform.Components.GOBased;
 using UnityEngine;
+using MyPlatform.Components.ColliderBased;
 
 namespace MyPlatform.Creatures
 {
