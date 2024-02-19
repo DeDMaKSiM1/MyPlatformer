@@ -121,9 +121,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3222202002166740493
 MonoBehaviour:
@@ -232,7 +232,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 3222202002166740490}
-        m_TargetAssemblyTypeName: MyPlatform.Components.DestroyObjectComponent, Assembly-CSharp
+        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.DestroyObjectComponent,
+          Assembly-CSharp
         m_MethodName: HeroLayerIgnoring
         m_Mode: 1
         m_Arguments:
@@ -240,18 +241,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: destroy
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3222202002166740493}
-        m_TargetAssemblyTypeName: MyPlatform.Components.SpriteAnimation, Assembly-CSharp
-        m_MethodName: SetClip
-        m_Mode: 5
+      - m_Target: {fileID: 3222202002166740490}
+        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.DestroyObjectComponent,
+          Assembly-CSharp
+        m_MethodName: DestroyObject
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: destroy
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

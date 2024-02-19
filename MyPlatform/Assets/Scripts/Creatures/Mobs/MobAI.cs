@@ -38,8 +38,6 @@ namespace MyPlatform.Creatures.Mobs
         private void Start()
         {
             StartState(_patrol.DoPatrol());
-
-
         }
 
         public void OnHeroInVision(GameObject go)
@@ -81,7 +79,7 @@ namespace MyPlatform.Creatures.Mobs
             _particles.Spawn("MissHero");  // Надо как то остановить моба
             _creature.SetDirection(Vector2.zero); // Заставил остановиться
             yield return new WaitForSeconds(_missHeroCooldown);
-            if(!_isDead)
+            if (!_isDead)
                 StartState(_patrol.DoPatrol());
 
 
@@ -118,14 +116,14 @@ namespace MyPlatform.Creatures.Mobs
             if (_current != null)
                 StopCoroutine(_current);
             _current = coroutine;
-                StartCoroutine(coroutine);
+            StartCoroutine(coroutine);
         }
 
         public void OnDie()
         {
             _isDead = true;
             _animator.SetBool(IsDeadKey, true);
-            gameObject.layer = 3;
+            gameObject.layer = 3; // слой, игнорирующий Hero
             _creature.SetDirection(Vector2.zero);
 
 
