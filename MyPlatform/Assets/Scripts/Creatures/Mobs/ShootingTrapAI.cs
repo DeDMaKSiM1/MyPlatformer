@@ -20,7 +20,21 @@ namespace MyPlatform.Creatures.Mobs
         [SerializeField] private Cooldown _rangeCooldown;
         [SerializeField] private SpawnComponent _rangeAttack;
 
-        
+        private void Update()
+        {
+            if (_vision.IsTouchingLayer)
+            {
+                if (_meleeCanAttack.IsTouchingLayer)
+                {
+                    if (_meleeCooldown.IsReady)
+                    {
+                        MeleeAttack();
+                    }
+                }
+            }
+        }
+
+
     }
 }
 

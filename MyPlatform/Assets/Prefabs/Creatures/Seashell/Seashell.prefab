@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71686732245452007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.542, y: -0.265, z: 0}
+  m_LocalPosition: {x: -0.53, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8366741534902525198}
@@ -179,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7962139274916602540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: -0.19, z: 0}
+  m_LocalPosition: {x: -0.47, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 0.79999995, z: 1}
   m_Children: []
   m_Father: {fileID: 8366741534902525198}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 8366741534902525194}
   - component: {fileID: 8366741534902525191}
   - component: {fileID: 4902843438579968823}
-  - component: {fileID: 7512145627785184884}
+  - component: {fileID: 4637602933121810487}
   m_Layer: 10
   m_Name: Seashell
   m_TagString: Enemy
@@ -434,7 +434,7 @@ MonoBehaviour:
   _onChange:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7512145627785184884
+--- !u!114 &4637602933121810487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,8 +447,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _vision: {fileID: 5313369210842184536}
-  _meleeCooldown: {fileID: 0}
+  _meleeCooldown:
+    _value: 2
   _meleeAttack: {fileID: 7629437723713468669}
   _meleeCanAttack: {fileID: 1291844980731035021}
-  _rangeCooldown: {fileID: 0}
+  _rangeCooldown:
+    _value: 0.5
   _rangeAttack: {fileID: 7348703155335272625}

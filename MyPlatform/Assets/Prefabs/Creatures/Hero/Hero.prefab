@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 830041605}
   - component: {fileID: 830041606}
   - component: {fileID: 830041607}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 1711230834}
   - component: {fileID: 1711230835}
   - component: {fileID: 1711230836}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5253,7 +5253,6 @@ GameObject:
   - component: {fileID: 2226421844043984326}
   - component: {fileID: 2226421844043984327}
   - component: {fileID: 533582672}
-  - component: {fileID: 590320444}
   m_Layer: 8
   m_Name: Hero
   m_TagString: Player
@@ -5329,7 +5328,8 @@ MonoBehaviour:
   _interactionRadius: 1
   _slamDownVelocity: 15
   _hitParticles: {fileID: 2226421843853842573}
-  _throwCooldown: {fileID: 590320444}
+  _throwCooldown:
+    _value: 1
   _armed: {fileID: 9100000, guid: 652b96aa430fab44787e89e8db1fbcb1, type: 2}
   _unarmed: {fileID: 9100000, guid: 029d4e92137decc41ba769be7bbe51a6, type: 2}
 --- !u!114 &2226421844043984330
@@ -5633,19 +5633,6 @@ MonoBehaviour:
     Component: {fileID: 576078582}
   - id: Throw
     Component: {fileID: 8725606199147837586}
---- !u!114 &590320444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226421844043984334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d493a0cb8bd0ed34187a3cb786312f69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _value: 1
 --- !u!1 &3078407087682791791
 GameObject:
   m_ObjectHideFlags: 0
@@ -5761,7 +5748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8440167254002601055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: -0.066, z: 0}
+  m_LocalPosition: {x: 0.425, y: -0.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2226421844043984335}

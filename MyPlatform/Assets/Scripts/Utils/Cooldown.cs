@@ -1,10 +1,11 @@
-
+﻿
 using System;
 using UnityEngine;
 
-namespace MyPlatform.Utils{
+namespace MyPlatform.Utils
+{
     [Serializable]
-    public class Cooldown : MonoBehaviour
+    public class Cooldown 
     {
         [SerializeField] private float _value;
 
@@ -14,8 +15,8 @@ namespace MyPlatform.Utils{
         {
             _timesUp = Time.time + _value;
         }
-
         public bool IsReady => _timesUp <= Time.time;
     }
-}
 
+
+}
