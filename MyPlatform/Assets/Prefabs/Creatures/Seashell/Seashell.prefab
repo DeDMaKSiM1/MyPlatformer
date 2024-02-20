@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71686732245452007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.53, y: -0.27, z: 0}
+  m_LocalPosition: {x: -0.548, y: -0.135, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8366741534902525198}
@@ -91,7 +91,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.2065024, y: -0.039896727}
+  m_Offset: {x: -3.3832445, y: -0.28369457}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -102,7 +102,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.4687014, y: 1.122086}
+  m_Size: {x: 7.115217, y: 0.6344904}
   m_EdgeRadius: 0
 --- !u!114 &5313369210842184536
 MonoBehaviour:
@@ -179,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7962139274916602540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.47, y: -0.31, z: 0}
+  m_LocalPosition: {x: -0.616, y: -0.174, z: 0}
   m_LocalScale: {x: 1, y: 0.79999995, z: 1}
   m_Children: []
   m_Father: {fileID: 8366741534902525198}
@@ -278,6 +278,8 @@ GameObject:
   - component: {fileID: 8366741534902525191}
   - component: {fileID: 4902843438579968823}
   - component: {fileID: 4637602933121810487}
+  - component: {fileID: 7290630430047109031}
+  - component: {fileID: 5846189990506026753}
   m_Layer: 10
   m_Name: Seashell
   m_TagString: Enemy
@@ -424,13 +426,50 @@ MonoBehaviour:
   _health: 2
   _onDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8366741534902525191}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: hit
+          m_BoolArgument: 0
+        m_CallState: 2
   _OnHeal:
     m_PersistentCalls:
       m_Calls: []
   _onDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5846189990506026753}
+        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.SpawnComponent, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7290630430047109031}
+        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.DestroyObjectComponent,
+          Assembly-CSharp
+        m_MethodName: DestroyObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -448,9 +487,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vision: {fileID: 5313369210842184536}
   _meleeCooldown:
-    _value: 2
+    _value: 1
   _meleeAttack: {fileID: 7629437723713468669}
   _meleeCanAttack: {fileID: 1291844980731035021}
   _rangeCooldown:
     _value: 0.5
   _rangeAttack: {fileID: 7348703155335272625}
+--- !u!114 &7290630430047109031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366741534902525199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd3f01ad7e180c4fbb91a012a2b9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToDestroy: {fileID: 8366741534902525199}
+--- !u!114 &5846189990506026753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366741534902525199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f91e20d26056c4387588a146152060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 8366741534902525198}
+  _prefab: {fileID: 6163645044980899323, guid: 4d0d4ce7472999249bac6cc7826584ce, type: 3}

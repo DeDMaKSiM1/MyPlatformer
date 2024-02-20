@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 406413709}
   - component: {fileID: 6150364501405265988}
   - component: {fileID: 6028777745839796806}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Big_Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 256
   _action:
     m_PersistentCalls:
       m_Calls:

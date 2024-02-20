@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6566534270391427384}
   - component: {fileID: 6566534270391427386}
   - component: {fileID: 1022447492}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Coins_Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: Player
+  _layer:
+    serializedVersion: 2
+    m_Bits: 256
   _action:
     m_PersistentCalls:
       m_Calls:

@@ -357,7 +357,7 @@ MonoBehaviour:
         m_CallState: 2
   _mask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 1271
   _tags:
   - Enemy
 --- !u!114 &3424842840850835190
