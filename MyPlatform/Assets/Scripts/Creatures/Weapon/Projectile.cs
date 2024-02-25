@@ -2,22 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyPlatform.Creatures.Projectile
+namespace MyPlatform.Creatures.Weapon
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : BaseProjectile
     {
-        [SerializeField] private float _speed;
-        [SerializeField] private bool _invertX;
 
-        private int _direction;
-        private Rigidbody2D _rBody;
-        private void Start()
+        protected override void Start()
         {
-            var mod = _invertX ? -1 : 1;
-            _direction =mod * transform.lossyScale.x > 0 ? 1 : -1;
-            _rBody = GetComponent<Rigidbody2D>();
-            var force = new Vector2(_direction * _speed, 0);
-            _rBody.AddForce(force, ForceMode2D.Impulse);
+            base.Start();
+            var force = new Vector2(Direction * _speed, 0);
+            RBody.AddForce(force, ForceMode2D.Impulse);
         }
 
 
