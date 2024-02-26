@@ -92,9 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2220842239857403647}
   - component: {fileID: 2220842239857403640}
-  - component: {fileID: 2220842239857403643}
   - component: {fileID: 2220842239857403646}
   - component: {fileID: 2220842239857403645}
+  - component: {fileID: 2220842239857403643}
   - component: {fileID: 5510833404874140970}
   - component: {fileID: 2220842239857403642}
   - component: {fileID: 2243675247348608266}
@@ -173,6 +173,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &2220842239857403646
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220842239857403620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.016968071, y: -0.009696007}
+  m_Size: {x: 0.72038794, y: 0.77266777}
+  m_Direction: 0
+--- !u!50 &2220842239857403645
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220842239857403620}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 30
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &2220842239857403643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,9 +266,10 @@ MonoBehaviour:
     _onComplete:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2243675247348608266}
-          m_TargetAssemblyTypeName: MyPlatform.Components.SpawnListComponent, Assembly-CSharp
-          m_MethodName: SpawnAll
+        - m_Target: {fileID: 7707340587825202153}
+          m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.SpawnComponent,
+            Assembly-CSharp
+          m_MethodName: Spawn
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -241,8 +279,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 2243675247348608266}
+          m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.SpawnListComponent,
+            Assembly-CSharp
+          m_MethodName: Spawn
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Money
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 2220842239857403642}
-          m_TargetAssemblyTypeName: MyPlatform.Components.DestroyObjectComponent,
+          m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.DestroyObjectComponent,
             Assembly-CSharp
           m_MethodName: DestroyObject
           m_Mode: 1
@@ -254,43 +305,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!70 &2220842239857403646
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2220842239857403620}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.016968071, y: -0.009696007}
-  m_Size: {x: 0.72038794, y: 0.77266777}
-  m_Direction: 0
---- !u!50 &2220842239857403645
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2220842239857403620}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 30
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &5510833404874140970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,29 +339,16 @@ MonoBehaviour:
   _onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7707340587825202153}
-        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.SpawnComponent, Assembly-CSharp
-        m_MethodName: Spawn
-        m_Mode: 1
+      - m_Target: {fileID: 2220842239857403643}
+        m_TargetAssemblyTypeName: MyPlatform.Animations.SpriteAnimation, Assembly-CSharp
+        m_MethodName: SetClip
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: destroy
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2220842239857403642}
-        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.DestroyObjectComponent,
-          Assembly-CSharp
-        m_MethodName: DestroyObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   _onChange:
@@ -379,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawners:
-  - id: 
+  - id: Money
     Component: {fileID: 201969853613675954}
 --- !u!114 &7707340587825202153
 MonoBehaviour:
