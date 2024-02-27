@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 830041605}
   - component: {fileID: 830041606}
   - component: {fileID: 830041607}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +64,164 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _isTouchingLayer: 0
+--- !u!1 &1205873361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205873362}
+  m_Layer: 10
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1205873362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205873361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1908242093}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1489549883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489549884}
+  - component: {fileID: 1489549885}
+  m_Layer: 10
+  m_Name: PatrolGroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1489549884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489549883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.35, y: -0.424, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1720681282}
+  m_Father: {fileID: 2226421844043984335}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1489549885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489549883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690c10300e679a745a739c21c885d1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layer:
+    serializedVersion: 2
+    m_Bits: 64
+  _isTouchingLayer: 0
+  _target: {fileID: 1720681282}
+--- !u!1 &1720681281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720681282}
+  m_Layer: 10
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1720681282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720681281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1489549884}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1908242092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1908242093}
+  - component: {fileID: 1908242094}
+  m_Layer: 10
+  m_Name: 'PatrolShitCheck '
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1908242093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908242092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.497, y: -0.136, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1205873362}
+  m_Father: {fileID: 2226421844043984335}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1908242094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908242092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690c10300e679a745a739c21c885d1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layer:
+    serializedVersion: 2
+    m_Bits: 5696
+  _isTouchingLayer: 0
+  _target: {fileID: 1205873362}
 --- !u!1 &1994212437799143673
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870197306792092753}
   - component: {fileID: 6112657019703764879}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ExclamationSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +280,7 @@ GameObject:
   - component: {fileID: 3424842840850835190}
   - component: {fileID: 474538769}
   - component: {fileID: 474538768}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -238,8 +396,8 @@ GameObject:
   - component: {fileID: 8829102494280345310}
   - component: {fileID: 631681167}
   - component: {fileID: 8289988032485802511}
-  - component: {fileID: 1866003331}
-  m_Layer: 0
+  - component: {fileID: 3821475860440130593}
+  m_Layer: 10
   m_Name: Sharky
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -262,6 +420,8 @@ Transform:
   - {fileID: 6146062355504505862}
   - {fileID: 4870197306792092753}
   - {fileID: 4405030538190525979}
+  - {fileID: 1489549884}
+  - {fileID: 1908242093}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,7 +635,7 @@ MonoBehaviour:
     Component: {fileID: 6112657019703764879}
   - id: MissHero
     Component: {fileID: 5847002946500767298}
---- !u!114 &1866003331
+--- !u!114 &3821475860440130593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,13 +644,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2226421844043984334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b543c4954891614cbf417edc82901a8, type: 3}
+  m_Script: {fileID: 11500000, guid: ea9bf5d41f239594b81e868069e46d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 0}
-  - {fileID: 0}
-  _treshold: 0.2
+  _platformCheck: {fileID: 1489549885}
+  _otherThingsCheck: {fileID: 1908242094}
+  _creature: {fileID: 631681167}
+  _direction: 1
 --- !u!1 &2706149697108364931
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4405030538190525979}
   - component: {fileID: 5847002946500767298}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MissSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +708,7 @@ GameObject:
   - component: {fileID: 8842816335828959269}
   - component: {fileID: 2541601269303774105}
   - component: {fileID: 3751181921550435545}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

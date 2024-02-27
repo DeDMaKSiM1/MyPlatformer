@@ -16,7 +16,7 @@ namespace MyPlatform.Creatures
 
         [Header("Checkers")]
 
-        [SerializeField] protected LayerCheck _groundCheck;
+        [SerializeField] protected ColliderCheck _groundCheck;
         [SerializeField] private CheckCircleOverLap _attackRange;
         [SerializeField] protected SpawnListComponent _particles;
 

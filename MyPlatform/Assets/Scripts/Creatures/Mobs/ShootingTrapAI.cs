@@ -7,13 +7,13 @@ namespace MyPlatform.Creatures.Mobs
 {
     public class ShootingTrapAI : MonoBehaviour
     {
-        [SerializeField] private LayerCheck _vision;
+        [SerializeField] private ColliderCheck _vision;
 
 
         [Header("Melee")]
         [SerializeField] private Cooldown _meleeCooldown;
         [SerializeField] private CheckCircleOverLap _meleeAttack;
-        [SerializeField] private LayerCheck _meleeCanAttack;
+        [SerializeField] private ColliderCheck _meleeCanAttack;
 
 
         [Header("Range")]

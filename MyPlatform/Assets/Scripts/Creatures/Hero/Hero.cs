@@ -15,7 +15,7 @@ namespace MyPlatform.Creatures.Hero
 
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _interactionLayer;
-        [SerializeField] private LayerCheck _wallCheck;
+        [SerializeField] private ColliderCheck _wallCheck;
 
         [SerializeField] private float _interactionRadius;
         [SerializeField] private float _slamDownVelocity;

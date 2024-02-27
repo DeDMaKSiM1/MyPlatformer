@@ -1,55 +1,34 @@
 using MyPlatform.Components.ColliderBased;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 namespace MyPlatform.Creatures.Mobs.Patrolling
 {
     public class PlatformPatrol : Patrol
     {
-        [SerializeField] LayerCheck _platformCheck;
-        [SerializeField] private float _treshold = 1f;
-        [SerializeField] private float _direction = 1f;
+        [SerializeField] LineCastCheck _platformCheck; 
+        [SerializeField] LineCastCheck _otherThingsCheck; 
         [SerializeField] private Creature _creature;
-
-        private Vector2 vect;
-
-
-
-
-        private void Awake()
-        {
-            _creature = GetComponent<Creature>();
-            vect = new Vector2(_direction, 0);
-        }
+        [SerializeField] private int _direction;
 
         public override IEnumerator DoPatrol()
         {
-
             while(enabled)
             {
-                if (_platformCheck)
+                if (_platformCheck.IsTouchingLayer && !_otherThingsCheck.IsTouchingLayer )
                 {
-                    _creature.SetDirection(vect);
-
+                    _creature.SetDirection(new Vector2(_direction, 0));
                 }
                 else
                 {
-                    //OnPoint();
+                    
                     _direction = -_direction;
-                    _creature.SetDirection(vect);
+                    _creature.SetDirection(new Vector2(_direction, 0));
                 }
-
-            }
-
-            yield return null;
+                yield return null;
+            }         
         }
-
-        //private bool OnPoint()
-        //{
-        //    return vect.magnitude < _treshold;
-        //}
-
     }
 }
 
