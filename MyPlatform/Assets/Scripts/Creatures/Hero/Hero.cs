@@ -36,6 +36,8 @@ namespace MyPlatform.Creatures.Hero
 
         private GameSession _session;
 
+        private int CoinCount => _session.Data.Inventory.Count("Coin");
+        private int SwordCount => _session.Data.Inventory.Count("Sword");
         protected override void Awake()
         {
             base.Awake();
@@ -58,7 +60,7 @@ namespace MyPlatform.Creatures.Hero
             base.Update();
 
             //var moveToSameDirectionX = Direction.x * transform.lossyScale.x > 0;
-  
+
             if (_wallCheck.IsTouchingLayer && Direction.x == transform.localScale.x)
             {
                 _isOnWall = true;
@@ -96,11 +98,11 @@ namespace MyPlatform.Creatures.Hero
             if (!IsGrounded && _allowDoubleJump && !_isOnWall)
             {
                 _particles.Spawn("Jump");
-                _allowDoubleJump = false;                
+                _allowDoubleJump = false;
                 return _jumpSpeed;
 
             }
-            
+
             return base.CalculateJumpVelocity(yVelocity);
         }
 
@@ -108,8 +110,9 @@ namespace MyPlatform.Creatures.Hero
         public override void TakeDamage()
         {
             base.TakeDamage();
-            if (_session.Data.Coins > 0) SpawnCoins();
-            
+ 
+            if (CoinCount > 0) SpawnCoins();
+
         }
 
         private void SpawnCoins()
@@ -117,19 +120,21 @@ namespace MyPlatform.Creatures.Hero
             _hitParticles.gameObject.SetActive(true);
             _hitParticles.Play();
 
-            var numCoinsToDispose = Mathf.Min(_session.Data.Coins, 5);
-            _session.Data.Coins -= numCoinsToDispose;
+            var numCoinsToDispose = Mathf.Min(CoinCount, 5);
+            _session.Data.Inventory.Remove("Coin", numCoinsToDispose);
+
             var burst = _hitParticles.emission.GetBurst(0);
             burst.count = numCoinsToDispose;
             _hitParticles.emission.SetBurst(0, burst);
-            Debug.Log(_session.Data.Coins);
+            Debug.Log(CoinCount);
         }
 
-        public void ModifyMoney(int moneyDelta)
+        public void AddInInventory(string id, int value)
         {
-            _session.Data.Coins += moneyDelta;
-            Debug.Log(_session.Data.Coins);
+
         }
+
+
 
         public void Interact()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер
         {
@@ -139,7 +144,8 @@ namespace MyPlatform.Creatures.Hero
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.IsInLayer(_groundLayer)){
+            if (other.gameObject.IsInLayer(_groundLayer))
+            {
                 var contact = other.contacts[0];
                 if (contact.relativeVelocity.y >= _slamDownVelocity)
                 {
@@ -149,23 +155,24 @@ namespace MyPlatform.Creatures.Hero
 
         }
 
+
+
         public override void Attack()
         {
-            if (!_session.Data.IsArmed) return;
+            var numSwords = SwordCount;
+
+            if (numSwords <= 0) return;
             _particles.Spawn("Attack");
             base.Attack();
 
         }
 
-        public void ArmHero()
-        {
-            _session.Data.IsArmed = true;
-            UpdateHeroWeapon();
-        }
+
 
         private void UpdateHeroWeapon()
         {
-            _Animator.runtimeAnimatorController = _session.Data.IsArmed ? _armed : _unarmed;
+
+            _Animator.runtimeAnimatorController = SwordCount > 0 ? _armed : _unarmed;
         }
 
         public void OnHealthChanged(int currentHealth)
@@ -184,6 +191,7 @@ namespace MyPlatform.Creatures.Hero
                 _throwCooldown.Reset();
             }
         }
+
 
     }
 
