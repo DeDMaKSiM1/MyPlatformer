@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: -3670237798770627416}
   - component: {fileID: 5656305368297348747}
   - component: {fileID: 5656305368297348748}
-  - component: {fileID: 2476829282260178579}
   - component: {fileID: -7083031951076274682}
+  - component: {fileID: 5114111882801757244}
   m_Layer: 11
   m_Name: Coins_SilverParticle
   m_TagString: Untagged
@@ -190,19 +190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 5656305368297348737}
---- !u!114 &2476829282260178579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5656305368297348737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c14be8a9bbefe44ab4756cafe0d85a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moneyDelta: 1
 --- !u!114 &-7083031951076274682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,9 +206,10 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2476829282260178579}
-        m_TargetAssemblyTypeName: MyPlatform.Components.ModifyMoneyComponent, Assembly-CSharp
-        m_MethodName: AddMoney
+      - m_Target: {fileID: 5114111882801757244}
+        m_TargetAssemblyTypeName: MyPlatform.Components.Collectables.InventoryAddComponent,
+          Assembly-CSharp
+        m_MethodName: Add
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -255,3 +243,17 @@ MonoBehaviour:
           m_StringArgument: destroy
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5114111882801757244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656305368297348737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed019345a83a45d4aa23544cc0766408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: Coin
+  _count: 1

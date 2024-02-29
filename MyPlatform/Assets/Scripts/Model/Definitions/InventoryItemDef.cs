@@ -6,7 +6,7 @@ using UnityEngine;
 namespace MyPlatform.Model.Definitions
 {
     [CreateAssetMenu(menuName = "Defs/InventoryItems", fileName = "InventoryItems")]
-    public class InventoryItemsDef : ScriptableObject
+    public class InventoryItemDef : ScriptableObject
     {
         [SerializeField] private ItemDef[] _items;
 

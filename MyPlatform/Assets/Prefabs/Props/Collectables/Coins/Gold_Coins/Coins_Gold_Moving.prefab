@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3539383468578708352}
   - component: {fileID: 3539383468578708354}
   - component: {fileID: 3539383468578708353}
-  - component: {fileID: 3539383468578708355}
-  - component: {fileID: 7655959541609887037}
+  - component: {fileID: 1911754687550733236}
   - component: {fileID: 4872315307073467568}
+  - component: {fileID: 3539383468578708355}
   m_Layer: 11
   m_Name: Coins_Gold_Moving
   m_TagString: Untagged
@@ -169,9 +169,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7655959541609887037}
-        m_TargetAssemblyTypeName: MyPlatform.Components.ModifyMoneyComponent, Assembly-CSharp
-        m_MethodName: AddMoney
+      - m_Target: {fileID: 1911754687550733236}
+        m_TargetAssemblyTypeName: MyPlatform.Components.Collectables.InventoryAddComponent,
+          Assembly-CSharp
+        m_MethodName: Add
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -233,7 +234,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &3539383468578708355
+--- !u!114 &1911754687550733236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,23 +243,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3539383468578708358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd3f01ad7e180c4fbb91a012a2b9c9e, type: 3}
+  m_Script: {fileID: 11500000, guid: ed019345a83a45d4aa23544cc0766408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectToDestroy: {fileID: 3539383468578708358}
---- !u!114 &7655959541609887037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3539383468578708358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c14be8a9bbefe44ab4756cafe0d85a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moneyDelta: 10
+  _id: Coin
+  _count: 10
 --- !u!114 &4872315307073467568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,3 +263,16 @@ MonoBehaviour:
   _amplitude: 1
   _frequency: 2
   _randomize: 1
+--- !u!114 &3539383468578708355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539383468578708358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd3f01ad7e180c4fbb91a012a2b9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectToDestroy: {fileID: 3539383468578708358}
