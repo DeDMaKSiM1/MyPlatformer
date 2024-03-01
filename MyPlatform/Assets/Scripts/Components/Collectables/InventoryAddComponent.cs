@@ -1,18 +1,18 @@
 using MyPlatform.Creatures.Hero;
 using UnityEngine;
-
+using MyPlatform.Model.Definitions;
 namespace MyPlatform.Components.Collectables
 {
     public class InventoryAddComponent : MonoBehaviour
     {
-        [SerializeField] private string _id;
+        [InventoryIdAtribute][SerializeField] private string _id;
         [SerializeField] private int _count;
 
         public void Add(GameObject go)
         {
-            var _hero = go.GetComponent<Hero>();
-            if (_hero != null)
-                _hero.AddInInventory(_id, _count);
+            var hero = go.GetComponent<Hero>();
+            if (hero != null)
+                hero.AddInInventory(_id, _count);
         }
 
     }   

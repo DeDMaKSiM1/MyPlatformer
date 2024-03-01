@@ -15,9 +15,11 @@ namespace MyPlatform.Model.Definitions
         private static DefsFacade _instance;
         public static DefsFacade I => _instance == null ? LoadDefs() : _instance;
 
+
         private static DefsFacade LoadDefs()
         {
-            return _instance = Resources.Load<DefsFacade>("DefsFacade");
+            _instance = Resources.Load<DefsFacade>("DefsFacade");
+            return _instance;
         }
     }
 }

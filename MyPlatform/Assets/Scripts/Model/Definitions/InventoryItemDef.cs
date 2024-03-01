@@ -14,12 +14,20 @@ namespace MyPlatform.Model.Definitions
         {
             foreach (var itemDef in _items)
             {
-               if(itemDef.Id == id)
+
+                if (itemDef.Id == id)
                     return itemDef;
             }
+
+
             return default;
         }
+#if UNITY_EDITOR
+        public ItemDef[] ItemsForEditor => _items;
+#endif
     }
+
+
 
     [Serializable]
     public struct ItemDef

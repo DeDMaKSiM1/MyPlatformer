@@ -50,11 +50,27 @@ namespace MyPlatform.Creatures.Hero
             _session = FindObjectOfType<GameSession>();
             var health = GetComponent<HealthComponent>();
 
+            _session.Data.Inventory.onChanged += OnInventoryChanged;
+            //_session.Data.Inventory.onChanged += AnotherHandler;
+
             health.SetHealth(_session.Data.Hp);
             UpdateHeroWeapon();
         }
+        private void OnDestroy()
+        {
+            _session.Data.Inventory.onChanged -= OnInventoryChanged;
 
+        }
 
+        //private void AnotherHandler(string id, int value)
+        //{
+        //    Debug.Log($"Inventory changed: {id} {value}");
+        //}
+        private void OnInventoryChanged(string id, int value)
+        {
+            if (id == "Sword")
+                UpdateHeroWeapon();
+        }
         protected override void Update()
         {
             base.Update();
@@ -154,8 +170,6 @@ namespace MyPlatform.Creatures.Hero
             }
 
         }
-
-
 
         public override void Attack()
         {

@@ -11,11 +11,17 @@ namespace MyPlatform.Model.Data
     {
         [SerializeField] private List<InventoryItemData> _inventory = new List<InventoryItemData>();
 
+        public delegate void OnInventoryChanged(string id, int value);
+
+        public OnInventoryChanged onChanged;
+
         public void Add(string id, int value)
         {
             if (value <= 0) return;
 
+
             var itemDef = DefsFacade.I.Items.Get(id);
+
             if (itemDef.IsVoid) return;
 
             var item = GetItem(id);
@@ -24,8 +30,9 @@ namespace MyPlatform.Model.Data
                 item = new InventoryItemData(id);
                 _inventory.Add(item);
             }
+            
             item.Value += value;
-
+            onChanged?.Invoke(id, Count(id));
         }
 
         public void Remove(string id, int value)
@@ -42,6 +49,7 @@ namespace MyPlatform.Model.Data
             {
                 _inventory.Remove(item);
             }
+            onChanged?.Invoke(id, Count(id));
 
         }
         public int Count(string id)
@@ -68,6 +76,7 @@ namespace MyPlatform.Model.Data
     [Serializable]
     public class InventoryItemData
     {
+        [InventoryIdAtribute]
         public string Id;
         public int Value;
 
