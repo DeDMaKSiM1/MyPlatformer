@@ -5,7 +5,8 @@ namespace MyPlatform.Components.Collectables
 {
     public class InventoryAddComponent : MonoBehaviour
     {
-        [InventoryIdAtribute][SerializeField] private string _id;
+        [InventoryIdAtribute]
+        [SerializeField] private string _id;
         [SerializeField] private int _count;
 
         public void Add(GameObject go)

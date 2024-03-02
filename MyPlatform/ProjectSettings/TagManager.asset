@@ -46,11 +46,11 @@ TagManager:
   - name: OnBackGround
     uniqueID: 3901616633
     locked: 0
-  - name: GameObject
-    uniqueID: 648362393
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GameObject
+    uniqueID: 648362393
     locked: 0
   - name: Creatures
     uniqueID: 1644718355
