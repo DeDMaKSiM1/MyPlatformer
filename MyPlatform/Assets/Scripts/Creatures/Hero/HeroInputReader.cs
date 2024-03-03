@@ -39,7 +39,10 @@ namespace MyPlatform.Creatures.Hero
             if (context.started)// performed - когда действие совершиться(мы нажали кнопку), а не когда клавиша вернулась в исх состояние
             {
                 _hero.StartThrowing();
-                _hero.Throw();
+            }
+            if (context.canceled)
+            {
+                _hero.ThrowingComplete();
             }
         }
 

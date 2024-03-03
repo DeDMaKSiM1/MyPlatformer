@@ -4,6 +4,7 @@ using MyPlatform.Model;
 using MyPlatform.Utils;
 using MyPlatform.Components.ColliderBased;
 using MyPlatform.Components.Health;
+using System.Collections;
 
 namespace MyPlatform.Creatures.Hero
 {
@@ -17,7 +18,7 @@ namespace MyPlatform.Creatures.Hero
         [Header("Super throw")]
         [SerializeField] private Cooldown _superThrowCooldown;
         [SerializeField] private int _superThrowCount;
-        [SerializeField] private int _superThrowDelay;
+        [SerializeField] private float _superThrowDelay;
 
 
 
@@ -36,6 +37,7 @@ namespace MyPlatform.Creatures.Hero
 
         private bool _allowDoubleJump;
         private bool _isOnWall;
+        private bool _superThrow;
 
         private GameSession _session;
 
@@ -198,20 +200,43 @@ namespace MyPlatform.Creatures.Hero
         }
         public void OnDoThrow()
         {
+            if (_superThrow)
+            {
+                var numThrows = Mathf.Min(_superThrowCount, SwordCount - 1);
+                StartCoroutine(DoSuperThrow(numThrows));
+            }
+            else
+            {
+                ThrowAndRemoveFromInventory();
+            }
+            _superThrow = false;
+        }
+        private IEnumerator DoSuperThrow(int numThrow)
+        {
+            for (int i = 0; i < numThrow; i++)
+            {
+                ThrowAndRemoveFromInventory();
+                yield return new WaitForSeconds(_superThrowDelay);
+            }
+        }
+
+        private void ThrowAndRemoveFromInventory()
+        {
             _particles.Spawn("Throw");
             _session.Data.Inventory.Remove("Sword", 1);
         }
-        public void Throw()
-        {
-            if (_throwCooldown.IsReady && SwordCount > 1)
-            {
-                _Animator.SetTrigger(ThrowKey);
-                _throwCooldown.Reset();
-            }
-        }
         public void StartThrowing()
         {
+            _superThrowCooldown.Reset();
+        }
+        public void ThrowingComplete()
+        {
+            if (!_throwCooldown.IsReady || SwordCount <= 1) return;
 
+            if (_superThrowCooldown.IsReady) _superThrow = true;
+
+            _Animator.SetTrigger(ThrowKey);
+            _throwCooldown.Reset();
         }
 
 

@@ -1212,7 +1212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _inventory:
-      _inventory: []
+      _inventory:
+      - Id: Sword
+        Value: 10
     Hp: 10
 --- !u!4 &1215199309
 Transform:
@@ -6940,6 +6942,18 @@ PrefabInstance:
       propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 327710057}
+    - target: {fileID: 2226421844043984329, guid: 98217a5aa6aefa1449db5f533422d469, type: 3}
+      propertyPath: _superThrowCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226421844043984329, guid: 98217a5aa6aefa1449db5f533422d469, type: 3}
+      propertyPath: _superThrowDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226421844043984329, guid: 98217a5aa6aefa1449db5f533422d469, type: 3}
+      propertyPath: _superThrowCooldown._value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2226421844043984334, guid: 98217a5aa6aefa1449db5f533422d469, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -7193,11 +7207,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5390380820814326243, guid: d226a6430688dcc40a8f0bd1aa37a7e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.535
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5390380820814326243, guid: d226a6430688dcc40a8f0bd1aa37a7e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.497
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 5390380820814326243, guid: d226a6430688dcc40a8f0bd1aa37a7e5, type: 3}
       propertyPath: m_LocalPosition.z
