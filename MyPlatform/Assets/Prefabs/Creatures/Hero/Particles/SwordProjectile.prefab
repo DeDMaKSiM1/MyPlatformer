@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 6622059281966758097}
   - component: {fileID: 9171632445207020287}
   - component: {fileID: 3381130375077761568}
-  - component: {fileID: 730046892002058745}
   m_Layer: 8
   m_Name: SwordProjectile
   m_TagString: Untagged
@@ -79,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1644718355
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 31ef6854138616c46ba307dd09f7511b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -249,15 +248,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7cd098af99dd44d9fce4efa040fe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: 
+  _tag: Untagged
   _layer:
     serializedVersion: 2
     m_Bits: 576
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 730046892002058745}
-        m_TargetAssemblyTypeName: MyPlatform.Components.SpawnComponent, Assembly-CSharp
+      - m_Target: {fileID: 3256061454841956372}
+        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.SpawnComponent, Assembly-CSharp
         m_MethodName: Spawn
         m_Mode: 1
         m_Arguments:
@@ -293,20 +292,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpDelta: -1
---- !u!114 &730046892002058745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183014266978576842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f91e20d26056c4387588a146152060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 3995918698139250972}
-  _prefab: {fileID: 1183014266978576842, guid: 8f7e24fdef2afc446af423e3470e9dd0, type: 3}
 --- !u!1 &8173062225996608419
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,8 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3995918698139250972}
-  - component: {fileID: 4781872350614733376}
-  - component: {fileID: 3324761564207287230}
+  - component: {fileID: 3256061454841956372}
   m_Layer: 8
   m_Name: StuckedSwordSpawner
   m_TagString: Untagged
@@ -339,7 +323,7 @@ Transform:
   m_Father: {fileID: 1183014266978576843}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4781872350614733376
+--- !u!114 &3256061454841956372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,15 +337,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 3995918698139250972}
   _prefab: {fileID: 1183014266978576842, guid: 8f7e24fdef2afc446af423e3470e9dd0, type: 3}
---- !u!114 &3324761564207287230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8173062225996608419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca437b7d3c292484b8922a0e56d796b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

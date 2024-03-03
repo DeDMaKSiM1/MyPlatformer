@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEditor.Animations;
 using MyPlatform.Model;
@@ -11,17 +10,21 @@ namespace MyPlatform.Creatures.Hero
     public class Hero : Creature
     {
         [SerializeField] private CheckCircleOverLap _interactionCheck;
-
-
-        [SerializeField] private LayerMask _groundLayer;
-        [SerializeField] private LayerMask _interactionLayer;
         [SerializeField] private ColliderCheck _wallCheck;
 
-        [SerializeField] private float _interactionRadius;
-        [SerializeField] private float _slamDownVelocity;
+        [SerializeField] private LayerMask _groundLayer;
 
+        [Header("Super throw")]
+        [SerializeField] private Cooldown _superThrowCooldown;
+        [SerializeField] private int _superThrowCount;
+        [SerializeField] private int _superThrowDelay;
+
+
+
+        [Header("Particles")]
         [SerializeField] private ParticleSystem _hitParticles;
 
+        [SerializeField] private float _slamDownVelocity;
         [SerializeField] private Cooldown _throwCooldown;
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _unarmed;
@@ -196,14 +199,19 @@ namespace MyPlatform.Creatures.Hero
         public void OnDoThrow()
         {
             _particles.Spawn("Throw");
+            _session.Data.Inventory.Remove("Sword", 1);
         }
         public void Throw()
         {
-            if (_throwCooldown.IsReady)
+            if (_throwCooldown.IsReady && SwordCount > 1)
             {
                 _Animator.SetTrigger(ThrowKey);
                 _throwCooldown.Reset();
             }
+        }
+        public void StartThrowing()
+        {
+
         }
 
 

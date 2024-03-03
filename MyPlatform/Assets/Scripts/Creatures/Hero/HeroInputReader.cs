@@ -36,8 +36,9 @@ namespace MyPlatform.Creatures.Hero
 
         public void OnThrow(InputAction.CallbackContext context)
         {
-            if (context.performed)//когда действие совершиться(мы нажали кнопку), а не когда клавиша вернулась в исх состояние
+            if (context.started)// performed - когда действие совершиться(мы нажали кнопку), а не когда клавиша вернулась в исх состояние
             {
+                _hero.StartThrowing();
                 _hero.Throw();
             }
         }
