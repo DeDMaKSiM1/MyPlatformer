@@ -60,6 +60,11 @@ namespace MyPlatform.Components
         {
         }
 
+        public void SetCount(int count)
+        {
+            _count = count;
+        }
+
     }
     
     

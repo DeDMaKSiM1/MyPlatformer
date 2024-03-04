@@ -186,6 +186,86 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _isTouchingLayer: 0
+--- !u!1 &1502155413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1502155414}
+  - component: {fileID: 1502155416}
+  - component: {fileID: 1502155415}
+  m_Layer: 0
+  m_Name: HitDrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1502155414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502155413}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2226421844043984335}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1502155416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502155413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644122f6fb02c034688192bd998ca9a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _count: 10
+  _drop:
+  - Drop: {fileID: 5656305368297348737, guid: b51f343b65a5d4b4aa46befb8ce10e3a, type: 3}
+    Probability: 100
+  _onDropCalculated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1502155415}
+        m_TargetAssemblyTypeName: MyPlatform.RandomSpawner, Assembly-CSharp
+        m_MethodName: StartToDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _spawnOnEnable: 0
+--- !u!114 &1502155415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502155413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e4cc00fd440d2408a41b3e2151dacb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sectorAngle: 58.6
+  _sectorRotation: 0
+  _waitTime: 0.1
+  _speed: 3
 --- !u!1 &1711230833
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,6 +5361,7 @@ Transform:
   - {fileID: 270052195}
   - {fileID: 49009102}
   - {fileID: 4413048445451043140}
+  - {fileID: 1502155414}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5318,16 +5399,16 @@ MonoBehaviour:
   _attackRange: {fileID: 2226421842863369044}
   _particles: {fileID: 533582672}
   _interactionCheck: {fileID: 270052196}
+  _wallCheck: {fileID: 1711230836}
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _interactionLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  _wallCheck: {fileID: 1711230836}
-  _interactionRadius: 1
+  _superThrowCooldown:
+    _value: 1
+  _superThrowCount: 3
+  _superThrowDelay: 0.2
+  _hitDrop: {fileID: 1502155416}
   _slamDownVelocity: 15
-  _hitParticles: {fileID: 2226421843853842573}
   _throwCooldown:
     _value: 1
   _armed: {fileID: 9100000, guid: 652b96aa430fab44787e89e8db1fbcb1, type: 2}
@@ -5517,7 +5598,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1644718355
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d491ca258c874384280e39565c3ac9e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

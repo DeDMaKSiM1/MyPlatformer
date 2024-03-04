@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 648362393
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2322180950842035098, guid: 90639d36ddcb06d40bc1ee6a8a50d9a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,10 +118,11 @@ MonoBehaviour:
           m_StringArgument: destroy
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7791311879164301714}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 7791311879164301716}
+        m_TargetAssemblyTypeName: MyPlatform.Components.GOBased.DestroyObjectComponent,
+          Assembly-CSharp
+        m_MethodName: HeroLayerIgnoring
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

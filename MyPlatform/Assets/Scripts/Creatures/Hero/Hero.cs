@@ -5,6 +5,7 @@ using MyPlatform.Utils;
 using MyPlatform.Components.ColliderBased;
 using MyPlatform.Components.Health;
 using System.Collections;
+using MyPlatform.Components;
 
 namespace MyPlatform.Creatures.Hero
 {
@@ -22,8 +23,9 @@ namespace MyPlatform.Creatures.Hero
 
 
 
-        [Header("Particles")]
-        [SerializeField] private ParticleSystem _hitParticles;
+        [Header("Money Drop")]
+        [SerializeField] private ProbabilityDropComponent _hitDrop;
+
 
         [SerializeField] private float _slamDownVelocity;
         [SerializeField] private Cooldown _throwCooldown;
@@ -138,15 +140,14 @@ namespace MyPlatform.Creatures.Hero
 
         private void SpawnCoins()
         {
-            _hitParticles.gameObject.SetActive(true);
-            _hitParticles.Play();
+
 
             var numCoinsToDispose = Mathf.Min(CoinCount, 5);
             _session.Data.Inventory.Remove("Coin", numCoinsToDispose);
 
-            var burst = _hitParticles.emission.GetBurst(0);
-            burst.count = numCoinsToDispose;
-            _hitParticles.emission.SetBurst(0, burst);
+            _hitDrop.SetCount(numCoinsToDispose);
+            _hitDrop.CalculateDrop();
+
             Debug.Log(CoinCount);
         }
 
