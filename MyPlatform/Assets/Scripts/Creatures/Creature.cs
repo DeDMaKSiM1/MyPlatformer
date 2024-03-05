@@ -1,6 +1,7 @@
 using MyPlatform.Components.GOBased;
 using UnityEngine;
 using MyPlatform.Components.ColliderBased;
+using MyPlatform.Audio;
 
 namespace MyPlatform.Creatures
 {
@@ -23,9 +24,10 @@ namespace MyPlatform.Creatures
         //Сервисные переменные
         protected Rigidbody2D Rbody;
         protected Vector2 Direction;
-        protected Animator _Animator;
+        protected Animator Animator;
+        protected PlaySoundsComponent Sounds;
         protected bool IsGrounded;
-        private bool _isJumping;
+        private bool isJumping;
 
         //Анимационные ключи
         private static readonly int isGroundKey = Animator.StringToHash("is-ground");
@@ -43,7 +45,8 @@ namespace MyPlatform.Creatures
         protected virtual void Awake()
         {
             Rbody = GetComponent<Rigidbody2D>();
-            _Animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
+            Sounds = GetComponent<PlaySoundsComponent>();
         }
         public void SetDirection(Vector2 direction)
         {
@@ -60,9 +63,9 @@ namespace MyPlatform.Creatures
             Rbody.velocity = new Vector2(xVelocity, yVelocity);
 
 
-            _Animator.SetBool(isGroundKey, IsGrounded);
-            _Animator.SetBool(isRunning, Direction.x != 0);
-            _Animator.SetFloat(VerticalVelocity, Rbody.velocity.y);
+            Animator.SetBool(isGroundKey, IsGrounded);
+            Animator.SetBool(isRunning, Direction.x != 0);
+            Animator.SetFloat(VerticalVelocity, Rbody.velocity.y);
 
             UpdateSpriteDirection(Direction);
 
@@ -73,12 +76,12 @@ namespace MyPlatform.Creatures
             var isJumpPressing = Direction.y > 0;
             if (IsGrounded)
             {
-                _isJumping = false;
+                isJumping = false;
             }
 
             if (isJumpPressing)
             {
-                _isJumping = true;
+                isJumping = true;
 
                 var isFalling = Rbody.velocity.y <= 0.001f;
 
@@ -98,11 +101,16 @@ namespace MyPlatform.Creatures
             if (IsGrounded)
             {
                 yVelocity = _jumpSpeed;
-                _particles.Spawn("Jump");
-
+                DoJumpVfx();
             }
-
             return yVelocity;
+        }
+
+        protected void DoJumpVfx()
+        {
+            Sounds.Play("Jump");
+            _particles.Spawn("Jump");
+
         }
 
         public void UpdateSpriteDirection(Vector2 direction)
@@ -122,20 +130,21 @@ namespace MyPlatform.Creatures
 
         public virtual void TakeDamage()
         {
-            _Animator.SetTrigger(Hit);
+            Animator.SetTrigger(Hit);
             //Для того, чтобы герой подлетел наверх
             Rbody.velocity = new Vector2(Rbody.velocity.x, _damageVelocity);
         }
         public virtual void Attack()
         {
-            _Animator.SetTrigger(AttackKey);
+            Animator.SetTrigger(AttackKey);
 
         }
         public void GetAttack()
         {
             _attackRange.Check();
-
+            Sounds.Play("Melee");
         }
+
 
     }
 }

@@ -49,9 +49,8 @@ namespace MyPlatform.Creatures.Hero
         {
             base.Awake();
             _defaultGravityScale = Rbody.gravityScale;
-            _Animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
         }
-
         private void Start()
         {
             _session = FindObjectOfType<GameSession>();
@@ -68,7 +67,6 @@ namespace MyPlatform.Creatures.Hero
             _session.Data.Inventory.onChanged -= OnInventoryChanged;
 
         }
-
         //private void AnotherHandler(string id, int value)
         //{
         //    Debug.Log($"Inventory changed: {id} {value}");
@@ -95,10 +93,8 @@ namespace MyPlatform.Creatures.Hero
                 Rbody.gravityScale = _defaultGravityScale;
             }
 
-            _Animator.SetBool(IsOnWall, _isOnWall);
+            Animator.SetBool(IsOnWall, _isOnWall);
         }
-
-
         protected override float CalculateYVelocity()
         {
             var isJumpPressing = Direction.y > 0;
@@ -115,20 +111,18 @@ namespace MyPlatform.Creatures.Hero
             //Иначе используем базовый метод в котором мы уже обсчитываем все для прыжка.
             return base.CalculateYVelocity();
         }
-
         protected override float CalculateJumpVelocity(float yVelocity)
         {
             if (!IsGrounded && _allowDoubleJump && !_isOnWall)
             {
-                _particles.Spawn("Jump");
                 _allowDoubleJump = false;
+                DoJumpVfx();
                 return _jumpSpeed;
 
             }
 
             return base.CalculateJumpVelocity(yVelocity);
         }
-
         //Проиграем здесь соотв. анимацию
         public override void TakeDamage()
         {
@@ -137,7 +131,6 @@ namespace MyPlatform.Creatures.Hero
             if (CoinCount > 0) SpawnCoins();
 
         }
-
         private void SpawnCoins()
         {
 
@@ -150,20 +143,15 @@ namespace MyPlatform.Creatures.Hero
 
             Debug.Log(CoinCount);
         }
-
         public void AddInInventory(string id, int value)
         {
             _session.Data.Inventory.Add(id, value);
         }
-
-
-
         public void Interact()//метод возвращает количество результатов, который он получил,в рамках его работы - сделает сферу вокруг его позиции и запишет все резы в массив//и вернет размер
         {
             _interactionCheck.Check();
 
         }
-
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.IsInLayer(_groundLayer))
@@ -176,7 +164,6 @@ namespace MyPlatform.Creatures.Hero
             }
 
         }
-
         public override void Attack()
         {
             var numSwords = SwordCount;
@@ -186,15 +173,11 @@ namespace MyPlatform.Creatures.Hero
             base.Attack();
 
         }
-
-
-
         private void UpdateHeroWeapon()
         {
 
-            _Animator.runtimeAnimatorController = SwordCount > 0 ? _armed : _unarmed;
+            Animator.runtimeAnimatorController = SwordCount > 0 ? _armed : _unarmed;
         }
-
         public void OnHealthChanged(int currentHealth)
         {
             _session.Data.Hp = currentHealth;
@@ -220,9 +203,9 @@ namespace MyPlatform.Creatures.Hero
                 yield return new WaitForSeconds(_superThrowDelay);
             }
         }
-
         private void ThrowAndRemoveFromInventory()
         {
+            Sounds.Play("Range");
             _particles.Spawn("Throw");
             _session.Data.Inventory.Remove("Sword", 1);
         }
@@ -236,10 +219,9 @@ namespace MyPlatform.Creatures.Hero
 
             if (_superThrowCooldown.IsReady) _superThrow = true;
 
-            _Animator.SetTrigger(ThrowKey);
+            Animator.SetTrigger(ThrowKey);
             _throwCooldown.Reset();
         }
-
 
     }
 
