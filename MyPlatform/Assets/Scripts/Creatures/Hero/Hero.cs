@@ -6,10 +6,11 @@ using MyPlatform.Components.ColliderBased;
 using MyPlatform.Components.Health;
 using System.Collections;
 using MyPlatform.Components;
+using MyPlatform.Model.Data;
 
 namespace MyPlatform.Creatures.Hero
 {
-    public class Hero : Creature
+    public class Hero : Creature, ICanAddInInventory
     {
         [SerializeField] private CheckCircleOverLap _interactionCheck;
         [SerializeField] private ColliderCheck _wallCheck;
