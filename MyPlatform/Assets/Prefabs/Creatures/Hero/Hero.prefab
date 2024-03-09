@@ -165,7 +165,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d3fbd486367461744ac749864d8d09a0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.109
+  m_Volume: 0.494
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _count: 10
   _drop:
-  - Drop: {fileID: 5656305368297348737, guid: b51f343b65a5d4b4aa46befb8ce10e3a, type: 3}
+  - Drop: {fileID: 1940472454229093192, guid: d058f735e5366614e9af8c095aa075ed, type: 3}
     Probability: 100
   _onDropCalculated:
     m_PersistentCalls:
