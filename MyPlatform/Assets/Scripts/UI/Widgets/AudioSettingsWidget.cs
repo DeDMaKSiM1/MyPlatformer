@@ -34,6 +34,7 @@ namespace MyPlatform.UI.Widgets
             var textValue = Mathf.Round(newValue * 100);
             _value.text = textValue.ToString();
             _slider.normalizedValue = newValue;
+
         }
         private void OnDestroy()
         {
