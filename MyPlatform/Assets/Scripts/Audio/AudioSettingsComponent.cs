@@ -40,6 +40,12 @@ namespace MyPlatform.Audio
 
             throw new ArgumentException("Undefined mode");
         }
+
+        private void OnDestroy()
+        {
+            _model.OnChanged -= OnSoundSettingChanged;
+
+        }
     }
 }
 

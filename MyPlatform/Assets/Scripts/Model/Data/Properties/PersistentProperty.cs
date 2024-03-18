@@ -27,7 +27,7 @@ namespace MyPlatform.Model.Data.Properties
                 var isEquals = _stored.Equals(value);
                 if (isEquals) return;
 
-                var oldValue = _value;
+                var oldValue = _stored;
                 Write(value);
                 _stored = _value = value;
 
