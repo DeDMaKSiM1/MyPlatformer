@@ -9,8 +9,10 @@ namespace MyPlatform.Model.Definitions
     public class DefsFacade : ScriptableObject
     {
         [SerializeField] private InventoryItemDef _items;
+        [SerializeField] private PlayerDef _player;
 
         public InventoryItemDef Items => _items;
+        public PlayerDef Player => _player;
 
         private static DefsFacade _instance;
         public static DefsFacade I => _instance == null ? LoadDefs() : _instance;
